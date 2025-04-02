@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { KeyRound, ArrowRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -7,11 +7,19 @@ import { toast } from '@/hooks/use-toast';
 
 interface KeyActivationProps {
   onActivateSuccess: (days: number) => void;
+  initialKey?: string;
 }
 
-const KeyActivation: React.FC<KeyActivationProps> = ({ onActivateSuccess }) => {
+const KeyActivation: React.FC<KeyActivationProps> = ({ onActivateSuccess, initialKey = '' }) => {
   const [key, setKey] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Set the initial key if provided
+  useEffect(() => {
+    if (initialKey) {
+      setKey(initialKey);
+    }
+  }, [initialKey]);
 
   const handleActivation = async () => {
     if (!key.trim()) {
@@ -31,9 +39,16 @@ const KeyActivation: React.FC<KeyActivationProps> = ({ onActivateSuccess }) => {
       const isValid = key.length >= 8; // Simple validation for demo
 
       if (isValid) {
-        // Calculate days based on key format in a real app
-        // For demo, we'll just give 30 days
-        const daysToAdd = 30;
+        // Calculate days based on key format
+        let daysToAdd = 30; // Default
+
+        if (key.startsWith('HN-M-')) {
+          daysToAdd = 30; // Monthly
+        } else if (key.startsWith('HN-Q-')) {
+          daysToAdd = 90; // Quarterly
+        } else if (key.startsWith('HN-Y-')) {
+          daysToAdd = 365; // Yearly
+        }
         
         toast({
           title: "Успешно!",

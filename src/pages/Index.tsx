@@ -39,6 +39,7 @@ const Index = () => {
   const [selectedPlan, setSelectedPlan] = useState<Subscription | null>(null);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [activeTab, setActiveTab] = useState("subscription");
+  const [pendingKeyActivation, setPendingKeyActivation] = useState<string>("");
 
   const handleSelectPlan = (plan: Subscription) => {
     setSelectedPlan(plan);
@@ -59,7 +60,31 @@ const Index = () => {
     setTimeout(() => {
       setIsProcessingPayment(false);
       
-      updateUserSubscription(selectedPlan);
+      // Generate a mock activation key based on plan
+      let activationKey = "";
+      switch(selectedPlan.type) {
+        case 'monthly':
+          activationKey = "HN-M-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+          break;
+        case 'quarterly':
+          activationKey = "HN-Q-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+          break;
+        case 'yearly':
+          activationKey = "HN-Y-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+          break;
+      }
+      
+      // Set the pending key for activation
+      setPendingKeyActivation(activationKey);
+      
+      // Switch to activation tab
+      setActiveTab("activation");
+      
+      toast({
+        title: "Оплата успешна",
+        description: `Ваш ключ: ${activationKey}. Пожалуйста, активируйте его.`,
+      });
+      
       setSelectedPlan(null);
     }, 2000);
   };
@@ -113,13 +138,15 @@ const Index = () => {
     });
     
     toast({
-      title: "Оплата успешна",
+      title: "Активация успешна",
       description: `Ваш тариф активирован до ${formattedDate}`,
     });
   };
 
   const handleKeyActivation = (days: number) => {
     updateUserSubscription(null, days);
+    // Clear the pending key after activation
+    setPendingKeyActivation("");
   };
 
   // Format plan types in Russian for display
@@ -152,12 +179,12 @@ const Index = () => {
           
           {!user.isActive ? (
             <Tabs defaultValue="subscription" value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid grid-cols-2 mb-6">
-                <TabsTrigger value="subscription" className="flex items-center gap-2">
+              <TabsList className="grid grid-cols-2 mb-6 bg-huriky-black border border-gray-800/40">
+                <TabsTrigger value="subscription" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
                   <CreditCard className="w-4 h-4" />
                   <span>Тарифы</span>
                 </TabsTrigger>
-                <TabsTrigger value="activation" className="flex items-center gap-2">
+                <TabsTrigger value="activation" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
                   <Key className="w-4 h-4" />
                   <span>Ключ</span>
                 </TabsTrigger>
@@ -178,7 +205,10 @@ const Index = () => {
               </TabsContent>
               
               <TabsContent value="activation">
-                <KeyActivation onActivateSuccess={handleKeyActivation} />
+                <KeyActivation 
+                  onActivateSuccess={handleKeyActivation} 
+                  initialKey={pendingKeyActivation}
+                />
                 <div className="mt-6">
                   <PlanFeatures />
                 </div>
@@ -189,12 +219,12 @@ const Index = () => {
               <ConnectionMethods />
               
               <Tabs defaultValue="subscription" value={activeTab} onValueChange={setActiveTab} className="w-full mt-6">
-                <TabsList className="grid grid-cols-2 mb-6">
-                  <TabsTrigger value="subscription" className="flex items-center gap-2">
+                <TabsList className="grid grid-cols-2 mb-6 bg-huriky-black border border-gray-800/40">
+                  <TabsTrigger value="subscription" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
                     <CreditCard className="w-4 h-4" />
                     <span>Тарифы</span>
                   </TabsTrigger>
-                  <TabsTrigger value="activation" className="flex items-center gap-2">
+                  <TabsTrigger value="activation" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
                     <Key className="w-4 h-4" />
                     <span>Ключ</span>
                   </TabsTrigger>
@@ -221,7 +251,10 @@ const Index = () => {
                 </TabsContent>
                 
                 <TabsContent value="activation">
-                  <KeyActivation onActivateSuccess={handleKeyActivation} />
+                  <KeyActivation 
+                    onActivateSuccess={handleKeyActivation}
+                    initialKey={pendingKeyActivation}
+                  />
                   <div className="mt-6">
                     <PlanFeatures />
                   </div>
