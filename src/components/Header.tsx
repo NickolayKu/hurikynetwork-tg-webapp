@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Zap, Menu } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
@@ -13,9 +13,6 @@ const Header: React.FC = () => {
           <span className="text-huriky-yellow">Huriky</span>Network
         </h1>
       </div>
-      <button className="w-9 h-9 flex items-center justify-center bg-telegram-card rounded-full">
-        <Menu className="w-5 h-5 text-gray-300" />
-      </button>
     </header>
   );
 };
