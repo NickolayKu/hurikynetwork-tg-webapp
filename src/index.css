@@ -63,7 +63,7 @@
   }
   
   .huriky-card {
-    @apply bg-huriky-darkCard text-white rounded-xl p-4 border-2 border-huriky-yellow relative overflow-hidden shadow-lg hover:shadow-huriky-glow transition-shadow duration-300;
+    @apply bg-huriky-darkCard text-white rounded-xl p-4 border-2 border-huriky-yellow relative overflow-hidden shadow-lg;
   }
   
   .telegram-card {

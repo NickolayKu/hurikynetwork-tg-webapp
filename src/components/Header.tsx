@@ -4,12 +4,12 @@ import { Zap } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
-    <header className="flex items-center justify-between bg-huriky-black p-4 sticky top-0 z-10 border-b border-gray-800/40 backdrop-blur-sm">
+    <header className="flex items-center justify-center bg-huriky-dark mb-5 bg-huriky-black/90 rounded-lg">
       <div className="flex items-center">
-        <div className="w-10 h-10 bg-huriky-yellow/10 rounded-full flex items-center justify-center mr-3 animate-pulse-yellow">
+        <div className="w-10 h-12 flex items-center justify-center mr-1 -ml-4">
           <Zap className="w-6 h-6 text-huriky-yellow animate-lightning-flash" />
         </div>
-        <h1 className="text-white font-bold text-xl">
+        <h1 className="text-gray-100 font-bold text-xl">
           <span className="text-huriky-yellow">Huriky</span>Network
         </h1>
       </div>

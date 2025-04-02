@@ -79,7 +79,7 @@ const KeyActivation: React.FC<KeyActivationProps> = ({ onActivateSuccess, initia
       </div>
       
       <p className="text-sm text-gray-400 mb-4">
-        Введите ключ активации для подключения или продления подписки. Ключи можно приобрести у официальных дилеров HurikyNetwork.
+        Введите ключ активации для подключения или продления вашей подписки.<br/>Ключ придет на указанный при покупке тарифа email.
       </p>
       
       <div className="space-y-4">
@@ -87,7 +87,7 @@ const KeyActivation: React.FC<KeyActivationProps> = ({ onActivateSuccess, initia
           placeholder="Введите ключ активации"
           value={key}
           onChange={(e) => setKey(e.target.value)}
-          className="bg-telegram-card border-gray-700 text-white placeholder:text-gray-500"
+          className="bg-huriky-darkCard border-gray-900 text-white shadow-none outline-none placeholder:text-gray-600"
         />
         
         <Button 
@@ -99,7 +99,7 @@ const KeyActivation: React.FC<KeyActivationProps> = ({ onActivateSuccess, initia
             "Активация..."
           ) : (
             <>
-              Активировать ключ <ArrowRight className="ml-2 h-5 w-5" />
+              Активировать ключ <ArrowRight className="ml-1 h-5 w-5 -mt-[2px]" />
             </>
           )}
         </Button>

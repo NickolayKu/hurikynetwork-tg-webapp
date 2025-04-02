@@ -14,6 +14,13 @@ const UserStats: React.FC<UserStatsProps> = ({ statistics, isActive }) => {
     return null;
   }
 
+  statistics = {
+    dataUsed: '8.5',
+    dataLimit: '100',
+    daysLeft: 28,
+    uptime: '2',
+  }
+
   const usedDataPercentage = parseFloat(statistics.dataUsed) / parseFloat(statistics.dataLimit) * 100;
 
   return (
@@ -25,7 +32,7 @@ const UserStats: React.FC<UserStatsProps> = ({ statistics, isActive }) => {
       
       <div className="grid grid-cols-2 gap-3">
         <div className="stats-card">
-          <div className="h-10 w-10 rounded-full bg-huriky-glow flex items-center justify-center">
+          <div className="h-10 w-10 rounded-full flex items-center justify-center">
             <Calendar className="h-5 w-5 text-huriky-yellow" />
           </div>
           <div>
@@ -35,7 +42,7 @@ const UserStats: React.FC<UserStatsProps> = ({ statistics, isActive }) => {
         </div>
         
         <div className="stats-card">
-          <div className="h-10 w-10 rounded-full bg-huriky-glow flex items-center justify-center">
+          <div className="h-10 w-10 rounded-full flex items-center justify-center">
             <Clock className="h-5 w-5 text-huriky-yellow" />
           </div>
           <div>
@@ -52,7 +59,7 @@ const UserStats: React.FC<UserStatsProps> = ({ statistics, isActive }) => {
             <p className="text-sm">Трафик</p>
           </div>
           <p className="text-xs text-gray-400">
-            {statistics.dataUsed} / {statistics.dataLimit}
+            {statistics.dataUsed} / {statistics.dataLimit} Гб
           </p>
         </div>
         <Progress value={usedDataPercentage} className="h-2 bg-gray-700/50" />

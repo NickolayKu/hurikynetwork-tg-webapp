@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Smartphone, Laptop, Monitor, Tablet, Download } from 'lucide-react';
 import { ConnectionMethod } from '@/types';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetDescription, SheetClose } from '@/components/ui/sheet';
 
 const ConnectionMethods: React.FC = () => {

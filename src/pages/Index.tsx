@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import SubscriptionCard from '@/components/SubscriptionCard';
@@ -12,19 +11,20 @@ import { Subscription, User, UserStatistics } from '@/types';
 import { toast } from '@/hooks/use-toast';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CreditCard, Key } from 'lucide-react';
+import { CreditCard, KeyRound } from 'lucide-react';
+import SupportButton from '@/components/SupportButton';
 
 const Index = () => {
   // Mock user data - in a real app this would come from API/backend
   const [user, setUser] = useState<User>({
-    username: "Пользователь Telegram",
+    username: "Магомед",
     isActive: false,
     expiryDate: undefined,
     statistics: {
       daysLeft: 0,
-      dataUsed: '0 GB',
-      dataLimit: '100 GB',
-      uptime: '0 дн.',
+      dataUsed: '8.5',
+      dataLimit: '100',
+      uptime: '2',
       lastConnection: undefined
     }
   });
@@ -40,15 +40,16 @@ const Index = () => {
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [activeTab, setActiveTab] = useState("subscription");
   const [pendingKeyActivation, setPendingKeyActivation] = useState<string>("");
+  const [selectedTarifCard, setSelectedTarifCard] = useState<string | null>(null);
 
   const handleSelectPlan = (plan: Subscription) => {
-    setSelectedPlan(plan);
-    
-    // Scroll to the bottom to see the payment button
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
-    });
+    if (plan.type === selectedTarifCard) {
+      setSelectedPlan(null);
+      setSelectedTarifCard(null);
+    } else {
+      setSelectedPlan(plan);
+      setSelectedTarifCard(plan.type);
+    }
   };
 
   const handlePayment = () => {
@@ -64,13 +65,13 @@ const Index = () => {
       let activationKey = "";
       switch(selectedPlan.type) {
         case 'monthly':
-          activationKey = "HN-M-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+          activationKey = "HN-M-" + Math.random().toString(36).substring(2, 10).toUpperCase() + "-" + Math.random().toString(36).substring(2, 10).toUpperCase();
           break;
         case 'quarterly':
-          activationKey = "HN-Q-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+          activationKey = "HN-Q-" + Math.random().toString(36).substring(2, 10).toUpperCase() + "-" + Math.random().toString(36).substring(2, 10).toUpperCase();
           break;
         case 'yearly':
-          activationKey = "HN-Y-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+          activationKey = "HN-Y-" + Math.random().toString(36).substring(2, 10).toUpperCase() + "-" + Math.random().toString(36).substring(2, 10).toUpperCase();
           break;
       }
       
@@ -161,11 +162,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-telegram-bg flex flex-col">
-      <Header />
       
       <ScrollArea className="flex-1 pb-24 scrollbar-none">
         <div className="container max-w-md mx-auto px-4 py-6">
-          <h2 className="text-2xl font-bold mb-6 text-huriky-yellow">VLESS VPN Доступ</h2>
+
+        <Header />
           
           <AccountInfo 
             username={user.username} 
@@ -179,14 +180,14 @@ const Index = () => {
           
           {!user.isActive ? (
             <Tabs defaultValue="subscription" value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid grid-cols-2 mb-6 bg-huriky-black border border-gray-800/40">
+              <TabsList className="grid grid-cols-2 mb-6 bg-huriky-black/80 border border-gray-800/40">
                 <TabsTrigger value="subscription" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
-                  <CreditCard className="w-4 h-4" />
+                  <CreditCard className="w-5 h-5 -mt-[2px]" />
                   <span>Тарифы</span>
                 </TabsTrigger>
                 <TabsTrigger value="activation" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
-                  <Key className="w-4 h-4" />
-                  <span>Ключ</span>
+                  <KeyRound className="w-5 h-5 -mt-[2px]" />
+                  <span>Активация ключа</span>
                 </TabsTrigger>
               </TabsList>
               
@@ -195,6 +196,7 @@ const Index = () => {
                 {subscriptions.map((sub) => (
                   <SubscriptionCard
                     key={sub.type}
+                    isSelected={selectedTarifCard === sub.type}
                     type={sub.type}
                     price={sub.price}
                     isPopular={sub.isPopular}
@@ -225,8 +227,8 @@ const Index = () => {
                     <span>Тарифы</span>
                   </TabsTrigger>
                   <TabsTrigger value="activation" className="flex items-center gap-2 data-[state=active]:bg-huriky-darkCard data-[state=active]:text-huriky-yellow">
-                    <Key className="w-4 h-4" />
-                    <span>Ключ</span>
+                    <KeyRound className="w-4 h-4" />
+                    <span>Активация ключа</span>
                   </TabsTrigger>
                 </TabsList>
                 
@@ -234,11 +236,14 @@ const Index = () => {
                   <div className="telegram-card mb-6">
                     <h3 className="font-bold text-lg mb-3">Продлить подписку</h3>
                     <p className="text-sm text-gray-400 mb-3">
-                      Ваша подписка активна до {user.expiryDate}. Вы можете продлить её заранее, выбрав один из тарифов:
+                      Ваша подписка активна до <span className='text-huriky-yellow'>{user.expiryDate}</span>
+                      <br/>
+                      Вы можете продлить её заранее, выбрав один из тарифов. Дни доступа добавятся к имеющимся.
                     </p>
                     {subscriptions.map((sub) => (
                       <SubscriptionCard
                         key={sub.type}
+                        isSelected={selectedTarifCard === sub.type}
                         type={sub.type}
                         price={sub.price}
                         isPopular={sub.isPopular}
@@ -262,13 +267,15 @@ const Index = () => {
               </Tabs>
             </>
           )}
+
+          <SupportButton />
         </div>
       </ScrollArea>
       
       {selectedPlan && activeTab === "subscription" && (
         <PaymentButton 
           price={selectedPlan.price}
-          label={`Оплатить ${getPlanLabel(selectedPlan.type)} доступ`}
+          label={`Оплатить ${getPlanLabel(selectedPlan.type).toLowerCase()} доступ`}
           onClick={handlePayment}
           isProcessing={isProcessingPayment}
         />

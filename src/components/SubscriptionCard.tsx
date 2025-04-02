@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { Check, Shield, Award, Star, ArrowRight } from 'lucide-react';
+import { Check, Shield, Award, Star, ArrowRight, UploadCloud, Wifi } from 'lucide-react';
 
 interface SubscriptionCardProps {
+  isSelected?: boolean;
   type: 'monthly' | 'quarterly' | 'yearly';
   price: number;
   isPopular?: boolean;
@@ -10,6 +11,7 @@ interface SubscriptionCardProps {
 }
 
 const SubscriptionCard: React.FC<SubscriptionCardProps> = ({ 
+  isSelected,
   type, 
   price, 
   isPopular = false,
@@ -35,12 +37,12 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
 
   return (
     <div 
-      className={`telegram-card relative mb-4 glow-effect hover:bg-telegram-card/80 cursor-pointer transition-all ${isPopular ? 'border-2 border-huriky-yellow' : ''}`}
+      className={`telegram-card relative mb-4 hover:bg-telegram-card/80 transition-all cursor-pointer border-2 ${isSelected ? ' border-huriky-yellow' : ''}`}
       onClick={onClick}
     >
       {isPopular && (
-        <div className="absolute top-0 right-0 bg-huriky-yellow text-black text-xs font-bold py-1 px-2 rounded-bl-lg rounded-tr-lg flex items-center gap-1">
-          <Award className="w-3 h-3" /> ПОПУЛЯРНЫЙ
+        <div className="absolute top-0 right-0 bg-huriky-yellow text-black text-xs font-bold py-1 px-2 rounded-bl-lg rounded-tr-md flex items-center gap-1">
+          <Award className="w-3 h-3" /> САМЫЙ ПОПУЛЯРНЫЙ
         </div>
       )}
       
@@ -48,7 +50,6 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         <div>
           <h3 className="font-bold text-lg flex items-center gap-1">
             {typeTitles[type]}
-            {isPopular && <Star className="w-4 h-4 fill-huriky-yellow text-huriky-yellow" />}
           </h3>
           <p className="text-sm text-gray-400">{typeDescriptions[type]}</p>
           {discount[type] && (
@@ -68,8 +69,12 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
       
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <Shield className="w-4 h-4 text-huriky-yellow mr-2" />
-          <span className="text-sm">Безопасное соединение</span>
+          <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
+          <span className="text-sm">100 Гб в месяц</span>
+        </div>
+        <div className="flex items-center">
+          <Wifi className="w-4 h-4 text-huriky-yellow mr-2" />
+          <span className="text-sm">Скорость до 150 Мб/с</span>
         </div>
         <ArrowRight className="w-5 h-5 text-huriky-yellow" />
       </div>
