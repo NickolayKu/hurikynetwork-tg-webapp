@@ -47,11 +47,13 @@
   html {
     font-family: 'Roboto', sans-serif;
     -webkit-tap-highlight-color: transparent;
+    @apply scrollbar-none;
   }
 
   body {
     @apply bg-telegram-bg text-foreground;
     font-family: 'Roboto', sans-serif;
+    @apply text-telegram-text;
   }
 }
 
@@ -61,18 +63,49 @@
   }
   
   .huriky-card {
-    @apply bg-huriky-black text-white rounded-xl p-4 border-2 border-huriky-yellow relative overflow-hidden;
+    @apply bg-huriky-darkCard text-white rounded-xl p-4 border-2 border-huriky-yellow relative overflow-hidden shadow-lg hover:shadow-huriky-glow transition-shadow duration-300;
   }
   
   .telegram-card {
-    @apply bg-white rounded-xl p-4 shadow-sm;
+    @apply bg-telegram-card rounded-xl p-4 text-telegram-text shadow-md border border-gray-700/20;
   }
   
   .telegram-input {
-    @apply bg-gray-100 border-0 rounded-lg px-4 py-3 w-full focus:ring-2 focus:ring-telegram-blue focus:outline-none;
+    @apply bg-telegram-bg border border-gray-700/30 rounded-lg px-4 py-3 w-full focus:ring-2 focus:ring-huriky-yellow focus:outline-none text-white;
   }
   
   .telegram-divider {
-    @apply h-[1px] w-full bg-gray-200 my-4;
+    @apply h-[1px] w-full bg-gray-700/30 my-4;
+  }
+
+  .stats-card {
+    @apply bg-telegram-card rounded-xl p-3 flex items-center gap-3 border border-gray-700/20;
+  }
+  
+  .stats-value {
+    @apply font-bold text-huriky-yellow text-lg;
+  }
+  
+  .connection-method {
+    @apply border border-gray-700/30 rounded-xl p-4 mb-3 flex items-center cursor-pointer transition-all hover:border-huriky-yellow;
+  }
+
+  .connection-method.active {
+    @apply border-huriky-yellow bg-huriky-glow;
+  }
+
+  .glow-effect {
+    @apply hover:shadow-[0_0_15px_rgba(255,199,0,0.3)] transition-shadow duration-300;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }

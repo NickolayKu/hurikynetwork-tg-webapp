@@ -28,11 +28,15 @@ export default {
 				telegram: {
 					blue: '#2AABEE',
 					darkBlue: '#229ED9',
-					bg: '#F5F5F5',
+					bg: '#17212B', // Updated for dark theme
+					card: '#242F3D', // New card background for dark theme
+					text: '#F5F5F5', // Text color for dark theme
 				},
 				huriky: {
-					yellow: '#FEF7CD',
-					black: '#1A1F2C',
+					yellow: '#FFC700', // More vibrant yellow
+					black: '#0F1621', // Darker black for backgrounds
+					darkCard: '#1A2736', // Darker card background
+					glow: 'rgba(255, 199, 0, 0.15)', // Yellow glow effect
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
@@ -78,14 +82,19 @@ export default {
 					to: { height: "0" },
 				},
 				"lightning-flash": {
-					"0%, 100%": { opacity: "1" },
-					"50%": { opacity: "0.6" },
+					"0%, 100%": { opacity: "1", filter: "drop-shadow(0 0 5px #FFC700)" },
+					"50%": { opacity: "0.6", filter: "drop-shadow(0 0 2px #FFC700)" },
+				},
+				"pulse-yellow": {
+					"0%, 100%": { boxShadow: "0 0 0 0 rgba(255, 199, 0, 0.4)" },
+					"50%": { boxShadow: "0 0 0 10px rgba(255, 199, 0, 0)" }
 				}
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
-				"lightning-flash": "lightning-flash 2s ease-in-out infinite"
+				"lightning-flash": "lightning-flash 2s ease-in-out infinite",
+				"pulse-yellow": "pulse-yellow 2s infinite"
 			},
 		},
 	},

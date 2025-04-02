@@ -4,16 +4,26 @@ import Header from '@/components/Header';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import PlanFeatures from '@/components/PlanFeatures';
 import AccountInfo from '@/components/AccountInfo';
+import UserStats from '@/components/UserStats';
+import ConnectionMethods from '@/components/ConnectionMethods';
 import PaymentButton from '@/components/PaymentButton';
-import { Subscription, User } from '@/types';
+import { Subscription, User, UserStatistics } from '@/types';
 import { toast } from '@/hooks/use-toast';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const Index = () => {
   // Mock user data - in a real app this would come from API/backend
   const [user, setUser] = useState<User>({
     username: "Пользователь Telegram",
     isActive: false,
-    expiryDate: undefined
+    expiryDate: undefined,
+    statistics: {
+      daysLeft: 0,
+      dataUsed: '0 GB',
+      dataLimit: '100 GB',
+      uptime: '0 дн.',
+      lastConnection: undefined
+    }
   });
 
   // Available subscription plans
@@ -49,13 +59,16 @@ const Index = () => {
       const today = new Date();
       let expiryDate = new Date();
       
+      let daysToAdd = 0;
       if (selectedPlan.type === 'monthly') {
-        expiryDate.setDate(today.getDate() + 30);
+        daysToAdd = 30;
       } else if (selectedPlan.type === 'quarterly') {
-        expiryDate.setDate(today.getDate() + 90);
+        daysToAdd = 90;
       } else {
-        expiryDate.setDate(today.getDate() + 365);
+        daysToAdd = 365;
       }
+      
+      expiryDate.setDate(today.getDate() + daysToAdd);
       
       const formattedDate = expiryDate.toLocaleDateString('ru-RU', {
         day: 'numeric',
@@ -63,10 +76,26 @@ const Index = () => {
         year: 'numeric'
       });
       
+      // Calculate new user statistics
+      const newStats: UserStatistics = {
+        daysLeft: daysToAdd,
+        dataUsed: '0 GB',
+        dataLimit: '100 GB',
+        uptime: '0 дн.',
+        lastConnection: new Date().toLocaleDateString('ru-RU', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric'
+        })
+      };
+      
       setUser({
         ...user,
         isActive: true,
-        expiryDate: formattedDate
+        expiryDate: formattedDate,
+        statistics: newStats
       });
       
       toast({
@@ -89,53 +118,61 @@ const Index = () => {
   };
 
   return (
-    <div className="pb-24 min-h-screen">
+    <div className="min-h-screen bg-telegram-bg flex flex-col">
       <Header />
       
-      <div className="container max-w-md mx-auto px-4 py-6">
-        <h2 className="text-2xl font-bold mb-6">VLESS VPN Доступ</h2>
-        
-        <AccountInfo 
-          username={user.username} 
-          expiryDate={user.expiryDate} 
-          isActive={user.isActive} 
-        />
-        
-        {!user.isActive && (
-          <>
-            <h3 className="font-bold text-lg mb-3">Выберите тариф</h3>
-            {subscriptions.map((sub) => (
-              <SubscriptionCard
-                key={sub.type}
-                type={sub.type}
-                price={sub.price}
-                isPopular={sub.isPopular}
-                onClick={() => handleSelectPlan(sub)}
-              />
-            ))}
-          </>
-        )}
-        
-        <PlanFeatures />
-        
-        {user.isActive && (
-          <div className="telegram-card">
-            <h3 className="font-bold text-lg mb-3">Продлить подписку</h3>
-            <p className="text-sm text-gray-600 mb-3">
-              Ваша подписка активна до {user.expiryDate}. Вы можете продлить её заранее, выбрав один из тарифов:
-            </p>
-            {subscriptions.map((sub) => (
-              <SubscriptionCard
-                key={sub.type}
-                type={sub.type}
-                price={sub.price}
-                isPopular={sub.isPopular}
-                onClick={() => handleSelectPlan(sub)}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      <ScrollArea className="flex-1 pb-24 scrollbar-none">
+        <div className="container max-w-md mx-auto px-4 py-6">
+          <h2 className="text-2xl font-bold mb-6 text-huriky-yellow">VLESS VPN Доступ</h2>
+          
+          <AccountInfo 
+            username={user.username} 
+            expiryDate={user.expiryDate} 
+            isActive={user.isActive} 
+          />
+          
+          {user.isActive && (
+            <UserStats statistics={user.statistics} isActive={user.isActive} />
+          )}
+          
+          {!user.isActive ? (
+            <>
+              <h3 className="font-bold text-lg mb-3 text-white">Выберите тариф</h3>
+              {subscriptions.map((sub) => (
+                <SubscriptionCard
+                  key={sub.type}
+                  type={sub.type}
+                  price={sub.price}
+                  isPopular={sub.isPopular}
+                  onClick={() => handleSelectPlan(sub)}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              <ConnectionMethods />
+              
+              <div className="telegram-card mb-6">
+                <h3 className="font-bold text-lg mb-3">Продлить подписку</h3>
+                <p className="text-sm text-gray-400 mb-3">
+                  Ваша подписка активна до {user.expiryDate}. Вы можете продлить её заранее, выбрав один из тарифов:
+                </p>
+                {subscriptions.map((sub) => (
+                  <SubscriptionCard
+                    key={sub.type}
+                    type={sub.type}
+                    price={sub.price}
+                    isPopular={sub.isPopular}
+                    onClick={() => handleSelectPlan(sub)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+          
+          <PlanFeatures />
+        </div>
+      </ScrollArea>
       
       {selectedPlan && (
         <PaymentButton 
