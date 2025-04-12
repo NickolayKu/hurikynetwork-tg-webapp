@@ -24,9 +24,9 @@ const Index = () => {
   useEffect(() => {
     const tg = window.Telegram.WebApp;
 
-    const userId = tg.initDataUnsafe.user.id;
-    const userName = tg.initDataUnsafe.user.first_name;
-    const userUsername = tg.initDataUnsafe.user.username;
+    const userId = tg?.initDataUnsafe?.user?.id;
+    const userName = tg?.initDataUnsafe?.user?.first_name;
+    const userUsername = tg?.initDataUnsafe?.user?.username;
 
     setUserTelegramId(userId);
     setUserTelegramUsername(userUsername);
@@ -39,7 +39,7 @@ const Index = () => {
       console.log(result);
       toast({
         title: "Успешно",
-        description: result,
+        description: JSON.stringify(result),
       });
     } else {
       toast({
