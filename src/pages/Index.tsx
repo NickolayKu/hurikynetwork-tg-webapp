@@ -37,6 +37,15 @@ const Index = () => {
     if (userTelegramId && userTelegramUsername) {
       const result = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
       console.log(result);
+      toast({
+        title: "Успешно",
+        description: result,
+      });
+    } else {
+      toast({
+        title: "Ошибка",
+        description: `Telegram Id: ${userTelegramId}. Telegram username: ${userTelegramUsername}`,
+      });
     }
   }
 
@@ -301,7 +310,7 @@ const Index = () => {
         <PaymentButton 
           price={selectedPlan.price}
           label={`Оплатить ${getPlanLabel(selectedPlan.type).toLowerCase()} доступ`}
-          onClick={buySubscription}
+          onClick={() => buySubscription()}
           isProcessing={isProcessingPayment}
         />
       )}
