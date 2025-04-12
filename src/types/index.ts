@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface Subscription {
   type: 'monthly' | 'quarterly' | 'yearly';
@@ -25,4 +26,17 @@ export interface ConnectionMethod {
   name: string;
   icon: string;
   description: string;
+}
+
+export interface TelegramWebApp {
+  initDataUnsafe: {
+      user: any;
+      [key: string]: any;
+  };
+}
+
+export interface Window {
+  Telegram: {
+      WebApp: TelegramWebApp;
+  };
 }

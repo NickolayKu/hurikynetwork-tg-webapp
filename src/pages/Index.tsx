@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Header from '@/components/Header';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import PlanFeatures from '@/components/PlanFeatures';
@@ -13,8 +12,34 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CreditCard, KeyRound } from 'lucide-react';
 import SupportButton from '@/components/SupportButton';
+// import { useQuery } from "@tanstack/react-query";
+import { api } from '@/services/api';
+import { useEffect, useState } from "react";
 
 const Index = () => {
+  const [userTelegramId, setUserTelegramId] = useState(null);
+  const [userTelegramFirstName, setUserTelegramFirstName] = useState(null);
+  const [userTelegramUsername, setUserTelegramUsername] = useState(null);
+
+  useEffect(() => {
+    const tg = window.Telegram.WebApp;
+
+    const userId = tg.initDataUnsafe.user.id;
+    const userName = tg.initDataUnsafe.user.first_name;
+    const userUsername = tg.initDataUnsafe.user.username;
+
+    setUserTelegramId(userId);
+    setUserTelegramUsername(userUsername);
+    setUserTelegramFirstName(userName);
+  }, []);
+
+  const buySubscription = async () => {
+    if (userTelegramId && userTelegramUsername) {
+      const result = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
+      console.log(result);
+    }
+  }
+
   // Mock user data - in a real app this would come from API/backend
   const [user, setUser] = useState<User>({
     username: "Магомед",
@@ -31,9 +56,9 @@ const Index = () => {
 
   // Available subscription plans
   const subscriptions: Subscription[] = [
-    { type: 'monthly', price: 299, isPopular: false },
-    { type: 'quarterly', price: 799, isPopular: true },
-    { type: 'yearly', price: 2899, isPopular: false }
+    { type: 'monthly', price: 1, isPopular: false },
+    { type: 'quarterly', price: 2, isPopular: true },
+    { type: 'yearly', price: 3, isPopular: false }
   ];
 
   const [selectedPlan, setSelectedPlan] = useState<Subscription | null>(null);
@@ -169,7 +194,7 @@ const Index = () => {
         <Header />
           
           <AccountInfo 
-            username={user.username} 
+            username={userTelegramFirstName ?? userTelegramUsername} 
             expiryDate={user.expiryDate} 
             isActive={user.isActive} 
           />
@@ -276,7 +301,7 @@ const Index = () => {
         <PaymentButton 
           price={selectedPlan.price}
           label={`Оплатить ${getPlanLabel(selectedPlan.type).toLowerCase()} доступ`}
-          onClick={handlePayment}
+          onClick={buySubscription}
           isProcessing={isProcessingPayment}
         />
       )}
