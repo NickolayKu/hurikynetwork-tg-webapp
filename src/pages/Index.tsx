@@ -56,24 +56,8 @@ const Index = () => {
     queryFn: () => fetchSubscriptionsData(),
   })
 
-  const buySubscription = async () => {
-    if (userTelegramId && userTelegramUsername) {
-      await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
-      toast({
-        title: "Счет успешно выставлен",
-        description: "Перейдите в чат с ботом для оплаты счета за подписку",
-      });
-    } else {
-      toast({
-        title: "Ошибка",
-        description: "Не удалось создать счет на оплату подписки",
-      });
-    }
-  }
-
   useEffect(() => {
     if (subsriptionsData) {
-      console.log(subsriptionsData)
       setSubscriptions([
         { type: 'monthly', price: subsriptionsData?.find(item => item.days === 30).price, isPopular: false },
         { type: 'quarterly', price: subsriptionsData?.find(item => item.days === 90).price, isPopular: true },
@@ -124,6 +108,37 @@ const Index = () => {
     const year = date.getUTCFullYear();
 
     return `${day}.${month}.${year}`;
+  }
+
+  const handleBuyProduct = () => {
+    const tg = window.Telegram.WebApp;
+
+    const productDetails = {
+      title: 'Digital Product',
+      description: 'Description of the digital product',
+      payload: 'unique_payload',
+      currency: 'XTR',
+      prices: [{ label: '⭐', amount: 1 }],
+    };
+
+    // Открытие окна с подтверждением платежа
+    tg.openPaymentForm(productDetails);
+  };
+
+  const buySubscription = async () => {
+    if (userTelegramId && userTelegramUsername) {
+      handleBuyProduct();
+      // await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
+      // toast({
+      //   title: "Счет успешно выставлен",
+      //   description: "Перейдите в чат с ботом для оплаты счета за подписку",
+      // });
+    } else {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось создать счет на оплату подписки",
+      });
+    }
   }
 
   return (
