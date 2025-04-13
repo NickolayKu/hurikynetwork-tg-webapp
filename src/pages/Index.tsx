@@ -73,6 +73,7 @@ const Index = () => {
 
   useEffect(() => {
     if (subsriptionsData) {
+      console.log(subsriptionsData)
       setSubscriptions([
         { type: 'monthly', price: subsriptionsData?.find(item => item.days === 30).price, isPopular: false },
         { type: 'quarterly', price: subsriptionsData?.find(item => item.days === 90).price, isPopular: true },
