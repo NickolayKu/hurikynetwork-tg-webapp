@@ -4,7 +4,12 @@ import { Smartphone, Laptop, Monitor, Tablet, Download } from 'lucide-react';
 import { ConnectionMethod } from '@/types';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetDescription, SheetClose } from '@/components/ui/sheet';
 
-const ConnectionMethods: React.FC = () => {
+interface ConnectionMethodsProps {
+  link: string;
+}
+
+
+const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ link }) => {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   
   const methods: ConnectionMethod[] = [
@@ -71,30 +76,30 @@ const ConnectionMethods: React.FC = () => {
                 </div>
               </div>
             </SheetTrigger>
-            <SheetContent side="bottom" className="bg-telegram-bg text-white rounded-t-2xl">
+            <SheetContent side="bottom" className="bg-telegram-bg text-white border-0 rounded-t-2xl">
               <SheetTitle className="text-huriky-yellow flex items-center gap-2">
                 {getIcon(method.icon)}
                 Подключение для {method.name}
               </SheetTitle>
-              <SheetDescription className="text-gray-300 mt-4">
-                <p>Для установки выполните следующие шаги:</p>
-                <ol className="list-decimal pl-5 mt-2 space-y-2">
-                  <li>Скачайте приложение {method.description.split(', ')[0]}</li>
-                  <li>Откройте приложение и нажмите «Добавить сервер»</li>
-                  <li>Скопируйте конфигурацию ниже и вставьте в приложение</li>
+              <SheetDescription className="mt-6">
+                <p className='text-gray-50'>Для установки выполните следующие шаги:</p>
+                <ol className="list-decimal pl-5 mt-3 space-y-2 text-gray-300">
+                  <li>Скачайте и установите одно из приложений: {method.description}</li>
+                  <li>Откройте приложение и нажмите «Добавить сервер» или аналог</li>
+                  <li>Скопируйте конфигурацию ниже и вставьте в ваше приложение</li>
                 </ol>
               </SheetDescription>
               
               <div className="telegram-card mt-4 relative">
-                <button className="absolute top-1 right-1 p-2 rounded-full bg-huriky-glow">
-                  <Download className="w-4 h-4 text-huriky-yellow" />
+                <button className="absolute top-3 right-3 p-2 rounded-full bg-huriky-glow">
+                  <Download className="w-6 h-6 text-huriky-yellow" />
                 </button>
-                <p className="text-xs font-mono text-gray-300 pr-10">
-                  vless://abcdef1234567890@example.com:443?encryption=none&security=tls&sni=example.com&type=ws&host=example.com&path=%2Fws#HurikyVPN-{method.name}
+                <p className="text-xs font-mono text-gray-300 pr-10 break-all">
+                  {link}
                 </p>
               </div>
               
-              <div className="mt-4">
+              <div className="mt-5">
                 <SheetClose asChild>
                   <button className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black">
                     Готово

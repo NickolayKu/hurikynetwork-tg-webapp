@@ -30,7 +30,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
               <Clock className="w-5 h-5 text-huriky-yellow" />
             </div>
             <div>
-              <p className="text-sm text-gray-300">Активен до:</p>
+              <p className="text-sm text-gray-300">Подписка до:</p>
               <p className="font-bold text-huriky-yellow">{expiryDate}</p>
             </div>
           </div>

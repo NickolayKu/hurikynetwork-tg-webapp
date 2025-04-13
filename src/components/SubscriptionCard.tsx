@@ -60,14 +60,14 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         </div>
         
         <div className="text-right">
-          <p className="font-bold text-2xl text-huriky-yellow">{price} ₽</p>
-          <p className="text-sm text-gray-400">{Math.round(price / (type === 'monthly' ? 30 : type === 'quarterly' ? 90 : 365))} ₽/день</p>
+          <p className="font-bold text-xl text-huriky-yellow mr-6">{price} <span className='absolute ml-1 -mt-[1px] text-xl'>⭐</span></p>
+          {/* <p className="text-sm text-gray-400">{Math.round(price / (type === 'monthly' ? 30 : type === 'quarterly' ? 90 : 365))} ₽/день</p> */}
         </div>
       </div>
       
       <div className="telegram-divider"></div>
       
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-start gap-6">
         <div className="flex items-center">
           <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
           <span className="text-sm">100 Гб в месяц</span>
@@ -76,7 +76,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
           <Wifi className="w-4 h-4 text-huriky-yellow mr-2" />
           <span className="text-sm">Скорость до 150 Мб/с</span>
         </div>
-        <ArrowRight className="w-5 h-5 text-huriky-yellow" />
+        {/* <ArrowRight className="w-5 h-5 text-huriky-yellow" /> */}
       </div>
     </div>
   );

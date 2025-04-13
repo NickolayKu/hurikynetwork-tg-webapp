@@ -4,7 +4,8 @@ import { Button } from './ui/button';
 const SupportButton: React.FC = () => {
 
   const handleOpenSupportChat = () => {
-
+    const tg = window.Telegram.WebApp;
+    tg.openTelegramLink("https://t.me/Huriky");
   }
 
   return (
