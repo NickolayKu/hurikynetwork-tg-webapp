@@ -31,6 +31,8 @@ const Index = () => {
     setUserTelegramId(userId);
     setUserTelegramUsername(userUsername);
     setUserTelegramFirstName(userName);
+
+    tg.ready();
   }, []);
 
   const buySubscription = async () => {
