@@ -14,6 +14,7 @@ class Api {
   async getAllSubscriptions() {
     try {
       const { data } = await this.api.get(`/subscriptions`);
+      console.log('getAllSubscriptions', data)
       return data;
     } catch(error){
       return error;
@@ -22,7 +23,7 @@ class Api {
 
   async getUserInfo(username: string) {
     try {
-      const { data } = await this.api.get(`users/${username}`);
+      const { data } = await this.api.get(`/users/${username}`);
       return data;
     } catch(error){
       return error;
