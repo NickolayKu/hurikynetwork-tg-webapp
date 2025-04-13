@@ -59,7 +59,7 @@ const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt,
           <div className="flex justify-between items-center mb-2">
             <div className="flex items-center gap-2">
               <UploadCloud className="h-4 w-4 text-huriky-yellow" />
-              <p className="text-sm">Трафик</p>
+              <p className="text-sm">Израсходовано трафика</p>
             </div>
             <p className="text-xs text-gray-400">
               {(usedTraffic / (1024 ** 3)).toFixed(2)} / {(dataLimit / (1024 ** 3)).toFixed(2)} Гб

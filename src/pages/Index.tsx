@@ -130,12 +130,12 @@ const Index = () => {
     <div className="min-h-screen bg-telegram-bg flex flex-col">
       
       <ScrollArea className="flex-1 pb-20 scrollbar-none">
-        <div className="container max-w-md mx-auto px-4 pb-6 pt-4">
+        <div className="container max-w-md mx-auto px-4 pb-6 pt-5">
 
         <Header />
           
           <AccountInfo 
-            username={userTelegramFirstName ?? userTelegramUsername} 
+            username={userTelegramUsername} 
             expiryDate={currentUserData ? formatTimestampToDate(currentUserData?.expire) : null} 
             isActive={currentUserData?.status === "active"} 
           />
