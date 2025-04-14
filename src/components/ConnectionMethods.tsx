@@ -1,16 +1,29 @@
 
 import React, { useState } from 'react';
-import { Smartphone, Laptop, Monitor, Tablet, Download } from 'lucide-react';
+import { Smartphone, Laptop, Monitor, Tablet, CopyIcon } from 'lucide-react';
 import { ConnectionMethod } from '@/types';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetDescription, SheetClose } from '@/components/ui/sheet';
+import { toast } from '@/hooks/use-toast';
 
 interface ConnectionMethodsProps {
   link: string;
 }
 
-
 const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ link }) => {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(link);
+      toast({
+        title: "Конфигурация скопирована в буфер обмена",
+      });
+    } catch (err) {
+      toast({
+        title: "Устройство не поддерживает копирование в буфер обмена",
+      });
+    }
+  };
   
   const methods: ConnectionMethod[] = [
     {
@@ -90,19 +103,13 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ link }) => {
                 </ol>
               </SheetDescription>
               
-              <div className="telegram-card mt-4 relative">
-                <button className="absolute top-3 right-3 p-2 rounded-full bg-huriky-glow">
-                  <Download className="w-6 h-6 text-huriky-yellow" />
-                </button>
-                <p className="text-xs font-mono text-gray-300 pr-10 break-all">
-                  {link}
-                </p>
-              </div>
+              <textarea readOnly className='telegram-card overflow-hidden h-36 outline-none shadow-none mt-4 w-full resize-none text-xs font-mono text-gray-300 break-all' value={link}></textarea>
               
-              <div className="mt-5">
+              <div className="mt-4">
                 <SheetClose asChild>
-                  <button className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black">
-                    Готово
+                  <button className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center" 
+                    onClick={() => copyToClipboard()}>
+                    <CopyIcon className="w-5 h-5 mr-2" /> Скопировать конфигурацию
                   </button>
                 </SheetClose>
               </div>

@@ -38,8 +38,8 @@ const Index = () => {
     const userUsername = tg?.initDataUnsafe?.user?.username;
 
     setUserTelegramId(userId);
-    setUserTelegramUsername(userUsername);
-    //setUserTelegramUsername("ni_cko_lay");
+    //setUserTelegramUsername(userUsername);
+    setUserTelegramUsername("ni_cko_lay");
     setUserTelegramFirstName(userName);
 
     tg.ready();
