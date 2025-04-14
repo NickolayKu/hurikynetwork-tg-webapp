@@ -91,6 +91,13 @@ const Index = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+  }
+
   const daysUntil = (timestamp: number) => {
     const now = Date.now();
     const targetDate = timestamp * 1000; 
@@ -103,7 +110,7 @@ const Index = () => {
   const formatTimestampToDate = (timestamp: number) => {
     const date = new Date(timestamp * 1000);
 
-    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     const day = String(date.getUTCDate()).padStart(2, '0');
     const year = date.getUTCFullYear();
 
@@ -121,6 +128,7 @@ const Index = () => {
             setSelectedPlan(null);
             setSelectedTarifCard(null);
             refetchUserData();
+            scrollToTop();
           } else {
             toast({
               title: "Ошибка оплаты счета",
