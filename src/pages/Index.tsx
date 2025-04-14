@@ -110,29 +110,13 @@ const Index = () => {
     return `${day}.${month}.${year}`;
   }
 
-  const handleBuyProduct = () => {
-    const tg = window.Telegram.WebApp;
-
-    const productDetails = {
-      title: 'Digital Product',
-      description: 'Description of the digital product',
-      payload: 'unique_payload',
-      currency: 'XTR',
-      prices: [{ label: '⭐', amount: 1 }],
-    };
-
-    // Открытие окна с подтверждением платежа
-    tg.openPaymentForm(productDetails);
-  };
-
   const buySubscription = async () => {
     if (userTelegramId && userTelegramUsername) {
-      handleBuyProduct();
-      // await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
-      // toast({
-      //   title: "Счет успешно выставлен",
-      //   description: "Перейдите в чат с ботом для оплаты счета за подписку",
-      // });
+      await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
+      toast({
+        title: "Счет успешно выставлен",
+        description: "Перейдите в чат с ботом для оплаты счета за подписку",
+      });
     } else {
       toast({
         title: "Ошибка",
