@@ -125,6 +125,11 @@ const Index = () => {
     }
   }
 
+  const openInvoiceLink = () => {
+    const tg = window.Telegram.WebApp;
+    tg.openInvoice('https://t.me/$mOhBgxAg8Us2EAAAeykkyQvr788');
+  }
+
   return (
     <div className="min-h-screen bg-telegram-bg flex flex-col">
       
@@ -179,7 +184,7 @@ const Index = () => {
         <PaymentButton 
           price={selectedPlan.price}
           label={`Купить ${getPlanLabel(selectedPlan.type).toLowerCase()} доступ`}
-          onClick={() => buySubscription()}
+          onClick={() => openInvoiceLink()}
         />
       )}
     </div>
