@@ -45,7 +45,7 @@ const Index = () => {
     tg.ready();
   }, []);
 
-  const { data: currentUserData, error: currentUserError, isLoading: currentUserDataIsLoading } = useQuery({
+  const { data: currentUserData, error: currentUserError, isLoading: currentUserDataIsLoading, refetch: refetchUserData } = useQuery({
     queryKey: ['user', userTelegramUsername],
     queryFn: () => fetchUserData(userTelegramUsername),
     enabled: !!userTelegramUsername
@@ -112,22 +112,33 @@ const Index = () => {
 
   const buySubscription = async () => {
     if (userTelegramId && userTelegramUsername) {
-      await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
-      toast({
-        title: "Счет успешно выставлен",
-        description: "Перейдите в чат с ботом для оплаты счета за подписку",
-      });
+      const invoiceData = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
+      
+      if (invoiceData && invoiceData.result) {
+        const tg = window.Telegram.WebApp;
+        tg.openInvoice(invoiceData.result, (status: string) => {
+          console.log('Invoice status received:', status);
+          if (status === 'paid') {
+            refetchUserData();
+          } else {
+            toast({
+              title: "Ошибка оплаты счета",
+              description: `Не удалось подтвердить оплату счета. Статус: ${status}`,
+            });
+          }
+        });
+      } else {
+        toast({
+          title: "Ошибка Telegram API",
+          description: "Не удалось создать счет на оплату подписки",
+        });
+      }
     } else {
       toast({
-        title: "Ошибка",
-        description: "Не удалось создать счет на оплату подписки",
+        title: "Ошибка Telegram",
+        description: "Не удалось получить данные аккаунта",
       });
     }
-  }
-
-  const openInvoiceLink = () => {
-    const tg = window.Telegram.WebApp;
-    tg.openInvoice('https://t.me/$mOhBgxAg8Us2EAAAeykkyQvr788');
   }
 
   return (
@@ -184,7 +195,7 @@ const Index = () => {
         <PaymentButton 
           price={selectedPlan.price}
           label={`Купить ${getPlanLabel(selectedPlan.type).toLowerCase()} доступ`}
-          onClick={() => openInvoiceLink()}
+          onClick={() => buySubscription()}
         />
       )}
     </div>
