@@ -130,10 +130,12 @@ const Index = () => {
             refetchUserData();
             scrollToTop();
           } else {
-            toast({
-              title: "Ошибка оплаты счета",
-              description: `Не удалось подтвердить оплату счета. Статус: ${status}`,
-            });
+            if (status === 'failed') {
+              toast({
+                title: "Ошибка оплаты счета",
+                description: `Не удалось подтвердить оплату счета`,
+              });
+            }
           }
         });
       } else {
