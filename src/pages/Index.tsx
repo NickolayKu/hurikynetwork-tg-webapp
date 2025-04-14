@@ -117,8 +117,9 @@ const Index = () => {
       if (invoiceData && invoiceData.result) {
         const tg = window.Telegram.WebApp;
         tg.openInvoice(invoiceData.result, (status: string) => {
-          console.log('Invoice status received:', status);
           if (status === 'paid') {
+            setSelectedPlan(null);
+            setSelectedTarifCard(null);
             refetchUserData();
           } else {
             toast({
