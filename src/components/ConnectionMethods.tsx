@@ -95,11 +95,11 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ link }) => {
                 Подключение для {method.name}
               </SheetTitle>
               <SheetDescription className="mt-6">
-                <p className='text-gray-50'>Для установки выполните следующие шаги:</p>
+                <p className='text-gray-50'>Для подключения выполните следующие шаги:</p>
                 <ol className="list-decimal pl-5 mt-3 space-y-2 text-gray-300">
-                  <li>Скачайте и установите одно из приложений: {method.description}</li>
-                  <li>Откройте приложение и нажмите «Добавить сервер» или аналог</li>
-                  <li>Скопируйте конфигурацию ниже и вставьте в ваше приложение</li>
+                  <li>Скачайте и установите на своё устройство одно из приложений: {method.description}</li>
+                  <li>Откройте установленное приложение и нажмите «Добавить сервер» или аналог</li>
+                  <li>Скопируйте конфигурацию ниже и вставьте в ваше приложение для добавления наших серверов</li>
                 </ol>
               </SheetDescription>
               
