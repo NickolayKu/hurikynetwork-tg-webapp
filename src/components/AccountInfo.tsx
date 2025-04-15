@@ -9,7 +9,7 @@ interface AccountInfoProps {
 }
 
 const AccountInfo: React.FC<AccountInfoProps> = ({ 
-  username = "Пользователь", 
+  username = "Пользователь не определен", 
   expiryDate, 
   isActive = false 
 }) => {

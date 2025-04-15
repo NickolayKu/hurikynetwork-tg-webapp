@@ -19,10 +19,10 @@ const PlanFeatures: React.FC = () => {
       text: 'Поддержка всех типов устройств',
       icon: <Shield className="w-4 h-4 text-huriky-yellow" />
     },
-    {
-      text: 'Доступ к отечественным сервисам из-за рубежа',
-      icon: <Lock className="w-4 h-4 text-huriky-yellow" />
-    },
+    // {
+    //   text: 'Доступ к отечественным сервисам из-за рубежа',
+    //   icon: <Lock className="w-4 h-4 text-huriky-yellow" />
+    // },
     {
       text: 'Отсутствие логов вашей активности',
       icon: <Lock className="w-4 h-4 text-huriky-yellow" />
