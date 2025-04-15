@@ -103,11 +103,11 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
                 </ol>
               </SheetDescription>
               
-              <div className='telegram-card h-auto outline-none shadow-none mt-4 w-full text-xs font-mono text-gray-300 overflow-hidden break-all'>
+              {/* <div className='telegram-card h-auto outline-none shadow-none mt-4 w-full text-xs font-mono text-gray-300 overflow-hidden break-all'>
                 {links.join('\n')}
-              </div>
+              </div> */}
               
-              <div className="mt-4">
+              <div className="mt-6">
                 <SheetClose asChild>
                   <button className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center" 
                     onClick={() => copyToClipboard()}>
