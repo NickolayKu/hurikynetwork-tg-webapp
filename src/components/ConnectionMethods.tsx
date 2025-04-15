@@ -36,7 +36,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       id: 'ios',
       name: 'iOS',
       icon: 'Smartphone',
-      description: 'Shadowrocket, V2Box, NapsternetV'
+      description: 'Shadowrocket, Streisand, Npv Tunnel'
     },
     {
       id: 'windows',
@@ -48,7 +48,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       id: 'macos',
       name: 'MacOS',
       icon: 'Monitor',
-      description: 'V2rayU, ClashX Pro, V2Box'
+      description: 'V2rayU, ClashX Pro, Streisand'
     },
     {
       id: 'linux',
