@@ -31,8 +31,8 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   
   const discount = {
     monthly: null,
-    quarterly: '10%',
-    yearly: '20%'
+    quarterly: '12%',
+    yearly: '30%'
   };
 
   return (
