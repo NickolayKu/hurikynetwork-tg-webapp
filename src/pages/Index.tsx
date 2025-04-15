@@ -13,6 +13,7 @@ import SupportButton from '@/components/SupportButton';
 import { useQuery } from "@tanstack/react-query";
 import { api } from '@/services/api';
 import { useEffect, useState } from "react";
+import PremiumBotButton from '@/components/PremiumBotButton';
 
 const fetchUserData = async (username: string) => {
   const data = await api.getUserInfo(username);
@@ -101,7 +102,7 @@ const Index = () => {
     const now = Date.now();
     const targetDate = timestamp * 1000; 
     const difference = targetDate - now;
-    const daysRemaining = Math.ceil(difference / (1000 * 60 * 60 * 24));
+    const daysRemaining = Math.floor(difference / (1000 * 60 * 60 * 24));
   
     return daysRemaining >= 0 ? daysRemaining : 0;
   }
@@ -198,6 +199,8 @@ const Index = () => {
           </div>
 
           <SupportButton />
+
+          <PremiumBotButton />
         </div>
       </ScrollArea>
       
