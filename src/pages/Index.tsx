@@ -170,7 +170,7 @@ const Index = () => {
               expireDays={daysUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
           )}
 
-          {(currentUserData && currentUserData.status === "active") && <ConnectionMethods link={currentUserData.links[0]} />}
+          {(currentUserData && currentUserData.status === "active") && <ConnectionMethods links={currentUserData.links} />}
 
           {(currentUserData && currentUserData.status) ? (
             <>

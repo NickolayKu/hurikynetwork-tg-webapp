@@ -6,15 +6,15 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetDescription, SheetC
 import { toast } from '@/hooks/use-toast';
 
 interface ConnectionMethodsProps {
-  link: string;
+  links: string[];
 }
 
-const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ link }) => {
+const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
 
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(link);
+      await navigator.clipboard.writeText(links.join('\n'));
       toast({
         title: "Конфигурация скопирована в буфер обмена",
       });
@@ -103,7 +103,9 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ link }) => {
                 </ol>
               </SheetDescription>
               
-              <textarea readOnly className='telegram-card overflow-hidden h-36 outline-none shadow-none mt-4 w-full resize-none text-xs font-mono text-gray-300 break-all' value={link}></textarea>
+              <div className='telegram-card h-auto outline-none shadow-none mt-4 w-full text-xs font-mono text-gray-300 overflow-hidden break-all'>
+                {links.join('\n')}
+              </div>
               
               <div className="mt-4">
                 <SheetClose asChild>
