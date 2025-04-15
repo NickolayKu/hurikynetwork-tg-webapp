@@ -20,7 +20,7 @@ const PlanFeatures: React.FC = () => {
       icon: <Shield className="w-4 h-4 text-huriky-yellow" />
     },
     {
-      text: 'Доступ к заблокированным сайтам',
+      text: 'Доступ к отечественным сервисам из-за рубежа',
       icon: <Lock className="w-4 h-4 text-huriky-yellow" />
     },
     {
