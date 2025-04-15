@@ -74,7 +74,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       
       <div className="space-y-3">
         {methods.map((method) => (
-          <Sheet key={method.id}>
+          <Sheet key={method.id} onOpenChange={(open: boolean) => !open && setSelectedMethod(null)}>
             <SheetTrigger asChild>
               <div 
                 className={`connection-method ${selectedMethod === method.id ? 'active' : ''}`}
@@ -109,7 +109,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
               
               <div className="mt-6">
                 <SheetClose asChild>
-                  <button className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center" 
+                  <button className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none" 
                     onClick={() => copyToClipboard()}>
                     <CopyIcon className="w-5 h-5 mr-2" /> Скопировать конфигурацию
                   </button>
