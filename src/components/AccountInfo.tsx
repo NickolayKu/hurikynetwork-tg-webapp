@@ -45,7 +45,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
             <Info className="w-5 h-5 text-red-400" />
             <p className="text-sm text-white mt-[2px]">Статус: <span className="font-bold text-red-400 pl-1">Не активен</span></p>
           </div>
-          <p className="text-xs text-center text-white/70">Выберите тариф для активации</p>
+          <p className="text-xs text-center text-white/50">Оплатите тариф для активации подписки</p>
         </div>
       )}
     </div>

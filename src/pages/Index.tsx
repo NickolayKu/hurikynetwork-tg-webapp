@@ -27,23 +27,22 @@ const fetchSubscriptionsData = async () => {
 
 const Index = () => {
   const [userTelegramId, setUserTelegramId] = useState(null);
-  const [userTelegramFirstName, setUserTelegramFirstName] = useState(null);
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
 
+  const tg = window.Telegram.WebApp;
+
   useEffect(() => {
-    const tg = window.Telegram.WebApp;
+    if (tg.initDataUnsafe) {
+      const userId = tg.initDataUnsafe?.user?.id;
+      const userUsername = tg.initDataUnsafe?.user?.username;
 
-    const userId = tg?.initDataUnsafe?.user?.id;
-    const userName = tg?.initDataUnsafe?.user?.first_name;
-    const userUsername = tg?.initDataUnsafe?.user?.username;
+      setUserTelegramId(userId);
+      setUserTelegramUsername(userUsername);
 
-    setUserTelegramId(userId);
-    setUserTelegramUsername(userUsername);
-    setUserTelegramFirstName(userName);
-
-    tg.ready();
-  }, []);
+      tg.ready();
+    }
+  }, [tg]);
 
   const { data: currentUserData, error: currentUserError, isLoading: currentUserDataIsLoading, refetch: refetchUserData } = useQuery({
     queryKey: ['user', userTelegramUsername],
@@ -107,6 +106,15 @@ const Index = () => {
     return daysRemaining >= 0 ? daysRemaining : 0;
   }
 
+  const hoursUntil = (timestamp: number) => {
+    const now = Date.now();
+    const targetDate = timestamp * 1000; 
+    const difference = targetDate - now;
+    const hoursRemaining = Math.floor(difference / (1000 * 60 * 60));
+  
+    return hoursRemaining >= 0 ? hoursRemaining : 0;
+  }
+
   const formatTimestampToDate = (timestamp: number) => {
     const date = new Date(timestamp * 1000);
 
@@ -168,7 +176,7 @@ const Index = () => {
           
           {(currentUserData && currentUserData.status === "active") && (
             <UserStats usedTraffic={currentUserData.used_traffic} dataLimit={currentUserData.data_limit} onlineAt={currentUserData.online_at} 
-              expireDays={daysUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
+              expireDays={daysUntil(currentUserData.expire)} expireHours={hoursUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
           )}
 
           {(currentUserData && currentUserData.status === "active") && <ConnectionMethods links={currentUserData.links} />}

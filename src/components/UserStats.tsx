@@ -8,11 +8,12 @@ interface UserStatsProps {
   usedTraffic: number;
   dataLimit: number;
   onlineAt: string;
-  expireDays: any;
+  expireDays: number;
+  expireHours: number;
   isActive: boolean;
 }
 
-const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt, expireDays, isActive }) => {
+const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt, expireDays, expireHours, isActive }) => {
 
   const usedDataPercentage = (usedTraffic / dataLimit) * 100;
 
@@ -39,8 +40,8 @@ const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt,
               <Calendar className="h-5 w-5 text-huriky-yellow" />
             </div>
             <div>
-              <p className="text-xs text-gray-400">Осталось дней</p>
-              <p className="stats-value">{expireDays}</p>
+              <p className="text-xs text-gray-400">{expireDays > 0 ? "Осталось дней" : "Осталось часов"}</p>
+              <p className="stats-value">{expireDays > 0 ? expireDays : expireHours}</p>
             </div>
           </div>
           

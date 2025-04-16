@@ -14,7 +14,6 @@ class Api {
   async getAllSubscriptions() {
     try {
       const { data } = await this.api.get(`/subscriptions`);
-      console.log('getAllSubscriptions', data)
       return data;
     } catch(error){
       return error;
