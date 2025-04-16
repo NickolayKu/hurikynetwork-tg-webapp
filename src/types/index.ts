@@ -2,6 +2,7 @@
 
 export interface Subscription {
   type: 'monthly' | 'quarterly' | 'yearly';
+  days: number;
   price: number;
   isPopular?: boolean;
 }

@@ -58,9 +58,9 @@ const Index = () => {
   useEffect(() => {
     if (subsriptionsData) {
       setSubscriptions([
-        { type: 'monthly', price: subsriptionsData?.find(item => item.days === 30).price, isPopular: false },
-        { type: 'quarterly', price: subsriptionsData?.find(item => item.days === 90).price, isPopular: true },
-        { type: 'yearly', price: subsriptionsData?.find(item => item.days === 365).price, isPopular: false }
+        { type: 'monthly', price: subsriptionsData?.find(item => item.days === 30).price, days: subsriptionsData?.find(item => item.days === 30).days, isPopular: false },
+        { type: 'quarterly', price: subsriptionsData?.find(item => item.days === 90).price, days: subsriptionsData?.find(item => item.days === 90).days, isPopular: true },
+        { type: 'yearly', price: subsriptionsData?.find(item => item.days === 365).price, days: subsriptionsData?.find(item => item.days === 365).days, isPopular: false }
       ]);
     }
   }, [subsriptionsData]);
@@ -127,7 +127,7 @@ const Index = () => {
 
   const buySubscription = async () => {
     if (userTelegramId && userTelegramUsername) {
-      const invoiceData = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, 30, 1);
+      const invoiceData = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, selectedPlan.days, selectedPlan.price);
       
       if (invoiceData && invoiceData.result) {
         const tg = window.Telegram.WebApp;
