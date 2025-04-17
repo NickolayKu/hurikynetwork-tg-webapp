@@ -30,6 +30,8 @@ const Index = () => {
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
 
+  const [paymentModalOpened, setPaymentModalOpened] = useState(false);
+
   const tg = window.Telegram.WebApp;
 
   useEffect(() => {
@@ -77,18 +79,19 @@ const Index = () => {
     } else {
       setSelectedPlan(plan);
       setSelectedTarifCard(plan.type);
+      setPaymentModalOpened(true);
     }
   };
 
   // Format plan types in Russian for display
-  const getPlanLabel = (type: string) => {
-    switch(type) {
-      case 'monthly': return 'Месячный';
-      case 'quarterly': return 'Квартальный';
-      case 'yearly': return 'Годовой';
-      default: return type;
-    }
-  };
+  // const getPlanLabel = (type: string) => {
+  //   switch(type) {
+  //     case 'monthly': return 'Месячный';
+  //     case 'quarterly': return 'Квартальный';
+  //     case 'yearly': return 'Годовой';
+  //     default: return type;
+  //   }
+  // };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -125,9 +128,14 @@ const Index = () => {
     return `${day}.${month}.${year}`;
   }
 
-  const buySubscription = async () => {
+  const buySubscription = async (promocode?: string) => {
+    if (promocode?.length > 0) {
+      toast({
+        title: "Введенный промокод не существует или уже был активирован",
+      });
+    }
     if (userTelegramId && userTelegramUsername) {
-      const invoiceData = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, selectedPlan.days, selectedPlan.price);
+      const invoiceData = await api.initSubscriptionInvoice(userTelegramId, userTelegramUsername, selectedPlan.days, selectedPlan.price, promocode);
       
       if (invoiceData && invoiceData.result) {
         const tg = window.Telegram.WebApp;
@@ -158,6 +166,10 @@ const Index = () => {
         description: "Не удалось получить данные аккаунта",
       });
     }
+  }
+
+  const handleCloseModal = () => {
+    setPaymentModalOpened(false);
   }
 
   return (
@@ -215,8 +227,10 @@ const Index = () => {
       {selectedPlan && activeTab === "subscription" && (
         <PaymentButton 
           price={selectedPlan.price}
-          label={`Купить ${getPlanLabel(selectedPlan.type).toLowerCase()} доступ`}
-          onClick={() => buySubscription()}
+          label={`Купить ${selectedPlan.days} дней доступа`}
+          onClick={(promocode?: string) => buySubscription(promocode)}
+          isOpened={paymentModalOpened}
+          handleCloseModal={() => handleCloseModal()}
         />
       )}
     </div>

@@ -29,7 +29,7 @@ class Api {
     }
   }
 
-  async initSubscriptionInvoice(telegramUserId: string, telegramUsername: string, days: number, price: number) {
+  async initSubscriptionInvoice(telegramUserId: string, telegramUsername: string, days: number, price: number, promocode?: string) {
     try {
       const { data } = await this.api.post(`/subscriptions/invoice`, {
         telegramUserId: telegramUserId,
@@ -37,6 +37,7 @@ class Api {
         order: {
           days: days,
           price: price,
+          promocode: promocode,
         }
       });
       return data;
