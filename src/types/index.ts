@@ -26,6 +26,7 @@ export interface ConnectionMethod {
   id: string;
   name: string;
   icon: string;
+  apps: any;
   description: string;
 }
 

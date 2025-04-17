@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React, { useState } from 'react';
 import { Smartphone, Laptop, Monitor, Tablet, CopyIcon } from 'lucide-react';
@@ -30,30 +31,100 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       id: 'android',
       name: 'Android',
       icon: 'Smartphone',
-      description: 'V2Ray, Nekoray, Matsuri'
+      apps: [
+        {
+          title: 'v2rayNG',
+          link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang&hl=ru',
+        },
+        {
+          title: 'v2RayTun',
+          link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=ru',
+        },
+        {
+          title: 'HiddifyNG',
+          link: 'https://play.google.com/store/apps/details?id=ang.hiddify.com&hl=ru',
+        },
+      ],
+      description: 'v2rayNG, v2RayTun, HiddifyNG'
     },
     {
       id: 'ios',
       name: 'iOS',
       icon: 'Smartphone',
+      apps: [
+        {
+          title: 'Streisand',
+          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
+        },
+        {
+          title: 'Shadowrocket',
+          link: 'https://apps.apple.com/ru/app/shadowrocket/id932747118',
+        },
+        {
+          title: 'Npv Tunnel',
+          link: 'https://apps.apple.com/ru/app/npv-tunnel/id1629465476',
+        },
+      ],
       description: 'Streisand, Shadowrocket, Npv Tunnel'
     },
     {
       id: 'windows',
       name: 'Windows',
       icon: 'Laptop',
+      apps: [
+        {
+          title: 'V2rayN',
+          link: 'https://github.com/2dust/v2rayN/releases',
+        },
+        {
+          title: 'Nekoray',
+          link: 'https://github.com/MatsuriDayo/nekoray/releases',
+        },
+        {
+          title: 'QV2ray',
+          link: 'https://github.com/Qv2ray/Qv2ray/releases',
+        },
+      ],
       description: 'V2rayN, Nekoray, QV2ray'
     },
     {
       id: 'macos',
       name: 'MacOS',
       icon: 'Monitor',
+      apps: [
+        {
+          title: 'Streisand',
+          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
+        },
+        {
+          title: 'V2rayU',
+          link: 'https://apps.apple.com/ru/app/v2rayu/id1569046443',
+        },
+        {
+          title: 'ClashX Pro',
+          link: 'https://github.com/clashdownload/ClashX_Pro/releases',
+        },
+      ],
       description: 'Streisand, V2rayU, ClashX Pro'
     },
     {
       id: 'linux',
       name: 'Linux',
       icon: 'Monitor',
+      apps: [
+        {
+          title: 'Nekoray',
+          link: 'https://github.com/MatsuriDayo/nekoray/releases',
+        },
+        {
+          title: 'QV2ray',
+          link: 'https://github.com/Qv2ray/Qv2ray/releases',
+        },
+        {
+          title: 'Clash',
+          link: 'https://github.com/fossabot/clash',
+        },
+      ],
       description: 'Nekoray, Qv2ray, Clash'
     }
   ];
@@ -97,7 +168,17 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
               <SheetDescription className="mt-6">
                 <p className='text-gray-50'>Для подключения выполните следующие шаги:</p>
                 <ol className="list-decimal pl-5 mt-3 space-y-2 text-gray-300">
-                  <li>Скачайте и установите на своё устройство одно из приложений: {method.description}</li>
+                  <li>
+                    Скачайте и установите на своё устройство одно из приложений: {' '}
+                    {method.apps.map((item: any, index: number) => {
+                      return (
+                        <>
+                          <a key={index} className='text-sky-500 hover:text-sky-600 font-bold' target='_blank' href={item.link}>{item.title}</a>
+                          {index !== (method.apps.length - 1) && ', '}
+                        </>
+                      );
+                    })}
+                  </li>
                   <li>Откройте установленное приложение и нажмите «Добавить сервер» или аналог</li>
                   <li>Скопируйте конфигурацию ниже и вставьте в ваше приложение для добавления наших серверов</li>
                 </ol>
