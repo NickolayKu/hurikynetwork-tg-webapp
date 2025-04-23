@@ -207,7 +207,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-telegram-bg flex flex-col">
       
-      <ScrollArea className="flex-1 pb-20 scrollbar-none">
+      <ScrollArea className="flex-1 pb-2 scrollbar-none">
         <div className="container max-w-md mx-auto px-4 pb-6 pt-5">
 
         <Header />

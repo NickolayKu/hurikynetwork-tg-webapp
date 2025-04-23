@@ -3,6 +3,8 @@ import App from './App.tsx';
 import './index.css';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import './assets/fonts/tgico.ttf';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

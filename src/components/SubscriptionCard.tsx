@@ -64,7 +64,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         
         <div className="text-right">
           {type !== 'trial' ? (
-            <p className="font-bold text-xl text-huriky-yellow mr-6">{price} <span className='absolute ml-1 -mt-[1px] text-xl'>⭐</span></p>
+            <p className="font-bold text-xl text-huriky-yellow mr-6">{price} <span className="tgico text-xl row-icon-stars-color ml-1"></span></p>
           ) : (
             <p className="font-bold text-lg"><span className="text-huriky-yellow">Бесплатно</span></p>
           )}
@@ -78,11 +78,11 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         <div className="flex items-center justify-start gap-6">
           <div className="flex items-center">
             <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
-            <span className="text-sm">100 Гб в месяц</span>
+            <span className="text-[13px]">150 Гб в месяц</span>
           </div>
           <div className="flex items-center">
             <Wifi className="w-4 h-4 text-huriky-yellow mr-2" />
-            <span className="text-sm">Скорость до 150 Мб/с</span>
+            <span className="text-[13px]">Скорость до 150 Мб/с</span>
           </div>
           {/* <ArrowRight className="w-5 h-5 text-huriky-yellow" /> */}
         </div>

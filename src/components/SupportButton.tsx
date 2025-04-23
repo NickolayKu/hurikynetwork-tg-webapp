@@ -13,7 +13,7 @@ const SupportButton: React.FC = () => {
       <h3 className="font-bold text-lg mt-7 text-white">Техническая поддержка</h3>
       <div className="telegram-card mt-3">
         <Button 
-            className="w-full bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center outline-none shadow-none"
+            className="w-full bg-sky-500/90 hover:bg-sky-600 text-white flex items-center justify-center outline-none shadow-none"
             onClick={handleOpenSupportChat}
           >     
           Написать в Telegram

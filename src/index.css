@@ -43,6 +43,31 @@
   * {
     @apply border-border;
   }
+
+  @font-face {
+    font-family: tgico;
+    src: local('tgico'), url('./assets/fonts/tgico.ttf') format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block
+  }
+  
+  .tgico {
+    font-family: tgico !important;
+    speak: never;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+  }
+  
+  .row-icon-stars-color {
+    color: #fecf16;
+    position: absolute;
+  }
   
   html {
     font-family: 'Roboto', sans-serif;

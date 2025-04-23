@@ -17,9 +17,10 @@ const PremiumBotButton: React.FC = () => {
 
       <div className="telegram-card mt-3">
         <Button 
-            className="w-full bg-sky-500 hover:bg-sky-600 text-yellow-300 flex items-center justify-center outline-none shadow-none"
-            onClick={handleOpenSupportChat}
-          >     
+          style={{color: "#fecf16"}}
+          className="w-full bg-sky-500/90 hover:bg-sky-600 flex items-center justify-center outline-none shadow-none"
+          onClick={handleOpenSupportChat}
+        >     
           Перейти в Premium Bot
         </Button>
       </div>

@@ -46,7 +46,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ price, label, onClick, is
             >
               <span className="pt-[2px]">{`${label} - ${getStarsText(
                 price
-              )}`}</span>
+              )}`}
+              </span>
             </button>
 
             {/* <Input
