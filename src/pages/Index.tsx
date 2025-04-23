@@ -73,7 +73,6 @@ const Index = () => {
 
 
   const [selectedPlan, setSelectedPlan] = useState<Subscription | null>(null);
-  const [activeTab, setActiveTab] = useState("subscription");
   const [selectedTarifCard, setSelectedTarifCard] = useState<string | null>(null);
 
   const handleSelectPlan = (plan: Subscription) => {
@@ -175,7 +174,8 @@ const Index = () => {
   const activateTrial = async () => {
     if (userTelegramId && userTelegramUsername) {
       const trialSubscriptionStatus = await api.initTrialSubscription(userTelegramId, userTelegramUsername);
-      if (trialSubscriptionStatus === 200) {
+      console.log(trialSubscriptionStatus)
+      if (trialSubscriptionStatus) {
         setTrialActivationModalOpened(false);
         refetchUserData();
         scrollToTop();

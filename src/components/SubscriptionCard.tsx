@@ -37,7 +37,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
 
   return (
     <div 
-      className={`telegram-card relative mb-4 hover:bg-telegram-card/80 transition-all cursor-pointer border-2 active:border-huriky-yellow`}
+      className={`telegram-card relative mb-4 hover:bg-telegram-card/80 transition-all cursor-pointer border-2 hover:border-huriky-yellow`}
       onClick={onClick}
     >
       {isPopular && (
