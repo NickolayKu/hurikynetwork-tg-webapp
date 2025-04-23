@@ -10,7 +10,7 @@ const PremiumBotButton: React.FC = () => {
 
   return (
     <>
-      <h3 className="font-bold text-lg mt-7 text-white">Купить звезды Telegram</h3>
+      <h3 className="font-bold text-lg mt-7 text-white mb-1">Купить звезды Telegram</h3>
       <p className="text-sm text-gray-400 mb-3">
         Если у вас устройство на iOS, то вы можете купить звезды в отдельном официальном боте без наценок
       </p>

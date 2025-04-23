@@ -45,6 +45,18 @@ class Api {
       return error;
     }
   }
+
+  async initTrialSubscription(telegramUserId: string, telegramUsername: string) {
+    try {
+      const result = await this.api.post(`/subscriptions/trial`, {
+        telegramUserId: telegramUserId,
+        username: telegramUsername,
+      });
+      return result.status;
+    } catch(error){
+      return error;
+    }
+  }
 }
 
 export const api = new Api();

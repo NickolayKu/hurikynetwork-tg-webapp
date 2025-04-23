@@ -15,6 +15,7 @@ import { api } from '@/services/api';
 import { useEffect, useState } from "react";
 import PremiumBotButton from '@/components/PremiumBotButton';
 import { MetrikaCounter } from 'react-metrika';
+import TrialButton from '@/components/TrialButton';
 
 const fetchUserData = async (username: string) => {
   const data = await api.getUserInfo(username);
@@ -32,6 +33,8 @@ const Index = () => {
   const [subscriptions, setSubscriptions] = useState(null);
 
   const [paymentModalOpened, setPaymentModalOpened] = useState(false);
+
+  const [trialActivationModalOpened, setTrialActivationModalOpened] = useState(false);
 
   const tg = window.Telegram.WebApp;
 
@@ -169,9 +172,38 @@ const Index = () => {
     }
   }
 
+  const activateTrial = async () => {
+    if (userTelegramId && userTelegramUsername) {
+      const trialSubscriptionStatus = await api.initTrialSubscription(userTelegramId, userTelegramUsername);
+      if (trialSubscriptionStatus === 200) {
+        setTrialActivationModalOpened(false);
+        refetchUserData();
+        scrollToTop();
+      } else {
+        toast({
+          title: "Ошибка активации",
+          description: `Не удалось активировать пробный период`,
+        });
+      }
+    } else {
+      toast({
+        title: "Ошибка Telegram",
+        description: "Не удалось получить данные аккаунта",
+      });
+    }
+  }
+
+  const handleSelectTrial = () => {
+    setTrialActivationModalOpened(true);
+  }
+
   const handleCloseModal = () => {
     setPaymentModalOpened(false);
   }
+
+  const handleCloseTrialModal = () => {
+    setTrialActivationModalOpened(false);
+  } 
 
   return (
     <div className="min-h-screen bg-telegram-bg flex flex-col">
@@ -194,9 +226,26 @@ const Index = () => {
 
           {(currentUserData && currentUserData.status === "active") && <ConnectionMethods links={currentUserData.links} />}
 
+          {(!currentUserData) ? (
+            <>
+              <h3 className="font-bold text-lg mb-1">Пробный период</h3>
+              <p className="text-sm text-gray-400 mb-3">
+                Вы можете протестировать наш сервис совершенно бесплатно и лично убедится во всех преимуществах.
+              </p>
+              <SubscriptionCard
+                key={'trial'}
+                isSelected={selectedTarifCard === 'trial'}
+                type={'trial'}
+                price={0}
+                isPopular={false}
+                onClick={() => handleSelectTrial()}
+              />
+            </>
+          ) : null}
+
           {(currentUserData && currentUserData.status) ? (
             <>
-              <h3 className="font-bold text-lg mb-3">Продлить подписку</h3>
+              <h3 className="font-bold text-lg mb-1">Продлить подписку</h3>
               <p className="text-sm text-gray-400 mb-3">
                 Вы можете продлить её заранее, выбрав один из тарифов. Дни доступа добавятся к имеющимся.
               </p>
@@ -204,6 +253,7 @@ const Index = () => {
           ) : (
             <h3 className="font-bold text-lg mb-3 text-white">Выберите тариф</h3>
           )}
+
           {subscriptions && subscriptions?.map((sub: any) => (
             <SubscriptionCard
               key={sub.type}
@@ -225,7 +275,7 @@ const Index = () => {
         </div>
       </ScrollArea>
       
-      {selectedPlan && activeTab === "subscription" && (
+      {selectedPlan && (
         <PaymentButton 
           price={selectedPlan.price}
           label={`Купить ${selectedPlan.days} дней доступа`}
@@ -234,6 +284,14 @@ const Index = () => {
           handleCloseModal={() => handleCloseModal()}
         />
       )}
+
+      {(!currentUserData) ? (
+        <TrialButton
+          onClick={() => activateTrial()}
+          isOpened={trialActivationModalOpened}
+          handleCloseModal={() => handleCloseTrialModal()}
+        />
+      ) : null}
 
       <MetrikaCounter
         id={101316785}

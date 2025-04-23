@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { Check, Shield, Award, Star, ArrowRight, UploadCloud, Wifi } from 'lucide-react';
+import { Award, UploadCloud, Wifi } from 'lucide-react';
 
 interface SubscriptionCardProps {
   isSelected?: boolean;
-  type: 'monthly' | 'quarterly' | 'yearly';
+  type: 'monthly' | 'quarterly' | 'yearly' | 'trial';
   price: number;
   isPopular?: boolean;
   onClick: () => void;
@@ -37,7 +37,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
 
   return (
     <div 
-      className={`telegram-card relative mb-4 hover:bg-telegram-card/80 transition-all cursor-pointer border-2 ${isSelected ? ' border-huriky-yellow' : ''}`}
+      className={`telegram-card relative mb-4 hover:bg-telegram-card/80 transition-all cursor-pointer border-2 active:border-huriky-yellow`}
       onClick={onClick}
     >
       {isPopular && (
@@ -50,8 +50,11 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         <div>
           <h3 className="font-bold text-lg flex items-center gap-1">
             {typeTitles[type]}
+            {type === 'trial' && <p className="font-bold text-lg">3 дня доступа</p>}
           </h3>
-          <p className="text-sm text-gray-400">{typeDescriptions[type]}</p>
+          <p className="text-sm text-gray-400">
+            {typeDescriptions[type]}
+          </p>
           {discount[type] && (
             <span className="inline-block bg-green-900/30 text-green-400 text-xs font-semibold px-2 py-1 rounded mt-2">
               Экономия {discount[type]}
@@ -60,24 +63,30 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         </div>
         
         <div className="text-right">
-          <p className="font-bold text-xl text-huriky-yellow mr-6">{price} <span className='absolute ml-1 -mt-[1px] text-xl'>⭐</span></p>
-          {/* <p className="text-sm text-gray-400">{Math.round(price / (type === 'monthly' ? 30 : type === 'quarterly' ? 90 : 365))} ₽/день</p> */}
+          {type !== 'trial' ? (
+            <p className="font-bold text-xl text-huriky-yellow mr-6">{price} <span className='absolute ml-1 -mt-[1px] text-xl'>⭐</span></p>
+          ) : (
+            <p className="font-bold text-lg"><span className="text-huriky-yellow">Бесплатно</span></p>
+          )}
         </div>
       </div>
       
-      <div className="telegram-divider"></div>
-      
-      <div className="flex items-center justify-start gap-6">
-        <div className="flex items-center">
-          <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
-          <span className="text-sm">100 Гб в месяц</span>
+      {type !== 'trial' && (  
+        <div className="telegram-divider"></div>
+      )}
+      {type !== 'trial' && (  
+        <div className="flex items-center justify-start gap-6">
+          <div className="flex items-center">
+            <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
+            <span className="text-sm">100 Гб в месяц</span>
+          </div>
+          <div className="flex items-center">
+            <Wifi className="w-4 h-4 text-huriky-yellow mr-2" />
+            <span className="text-sm">Скорость до 150 Мб/с</span>
+          </div>
+          {/* <ArrowRight className="w-5 h-5 text-huriky-yellow" /> */}
         </div>
-        <div className="flex items-center">
-          <Wifi className="w-4 h-4 text-huriky-yellow mr-2" />
-          <span className="text-sm">Скорость до 150 Мб/с</span>
-        </div>
-        {/* <ArrowRight className="w-5 h-5 text-huriky-yellow" /> */}
-      </div>
+      )}
     </div>
   );
 };
