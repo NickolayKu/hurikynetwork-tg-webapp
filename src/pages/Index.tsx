@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from '@/services/api';
 import { useEffect, useState } from "react";
 import PremiumBotButton from '@/components/PremiumBotButton';
+import { MetrikaCounter } from 'react-metrika';
 
 const fetchUserData = async (username: string) => {
   const data = await api.getUserInfo(username);
@@ -233,6 +234,16 @@ const Index = () => {
           handleCloseModal={() => handleCloseModal()}
         />
       )}
+
+      <MetrikaCounter
+        id={101316785}
+        options={{
+          webvisor: true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          clickmap:true,
+        }}
+      />
     </div>
   );
 };
