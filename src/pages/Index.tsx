@@ -174,8 +174,7 @@ const Index = () => {
   const activateTrial = async () => {
     if (userTelegramId && userTelegramUsername) {
       const trialSubscriptionStatus = await api.initTrialSubscription(userTelegramId, userTelegramUsername);
-      console.log(trialSubscriptionStatus)
-      if (trialSubscriptionStatus) {
+      if (trialSubscriptionStatus === 201 || trialSubscriptionStatus === 200) {
         setTrialActivationModalOpened(false);
         refetchUserData();
         scrollToTop();
