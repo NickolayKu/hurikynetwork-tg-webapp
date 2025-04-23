@@ -107,7 +107,7 @@ const Index = () => {
     const now = Date.now();
     const targetDate = timestamp * 1000; 
     const difference = targetDate - now;
-    const daysRemaining = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const daysRemaining = Math.round(difference / (1000 * 60 * 60 * 24));
   
     return daysRemaining >= 0 ? daysRemaining : 0;
   }
