@@ -223,7 +223,7 @@ const Index = () => {
               expireDays={daysUntil(currentUserData.expire)} expireHours={hoursUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
           )}
 
-          {(currentUserData && currentUserData.status === "active") && <ConnectionMethods links={currentUserData.links} />}
+          {(currentUserData && currentUserData.status === "active") && <ConnectionMethods links={currentUserData?.links} />}
 
           {(!currentUserData) ? (
             <>
@@ -263,6 +263,8 @@ const Index = () => {
               onClick={() => handleSelectPlan(sub)}
             />
           ))}
+
+          {(!currentUserData || currentUserData?.status !== "active") && <ConnectionMethods links={currentUserData?.links} />}
 
           <div className="mt-6">
             <PlanFeatures />
