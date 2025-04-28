@@ -48,8 +48,8 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       description: 'v2rayNG, v2RayTun, HiddifyNG'
     },
     {
-      id: 'ios',
-      name: 'iOS',
+      id: 'iphone',
+      name: 'Iphone',
       icon: 'Smartphone',
       apps: [
         {

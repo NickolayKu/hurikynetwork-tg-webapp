@@ -36,6 +36,7 @@ export default {
 					yellow: '#FFC700', // More vibrant yellow
 					black: '#0F1621', // Darker black for backgrounds
 					darkCard: '#1A2736', // Darker card background
+					card: '#223447',
 					glow: 'rgba(255, 199, 0, 0.15)', // Yellow glow effect
 				},
 				primary: {

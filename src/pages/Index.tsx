@@ -51,13 +51,13 @@ const Index = () => {
   }, [tg]);
 
   const { data: currentUserData, error: currentUserError, isLoading: currentUserDataIsLoading, refetch: refetchUserData } = useQuery({
-    queryKey: ['user', userTelegramUsername],
+    queryKey: ['current_user'],
     queryFn: () => fetchUserData(userTelegramUsername),
     enabled: !!userTelegramUsername
   })
 
   const { data: subsriptionsData, error: subsriptionsError, isLoading: subsriptionsDataIsLoading } = useQuery({
-    queryKey: ['subsriptions'],
+    queryKey: ['subscriptions'],
     queryFn: () => fetchSubscriptionsData(),
   })
 

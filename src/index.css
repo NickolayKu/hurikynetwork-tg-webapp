@@ -80,6 +80,22 @@
     font-family: 'Roboto', sans-serif;
     @apply text-telegram-text;
   }
+
+  .start-page-screen {
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.2s;
+    overflow: hidden;
+  }
+  
+  .start-page-screen.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  li::marker {
+    color: rgb(255 199 0);
+  }
 }
 
 @layer components {
@@ -116,6 +132,14 @@
   }
 
   .connection-method.active {
+    @apply border-huriky-yellow bg-huriky-glow;
+  }
+
+  .device-select-card {
+    @apply border border-gray-700/30 rounded-xl p-3 mb-3 flex items-center cursor-pointer transition-all hover:border-huriky-yellow;
+  }
+
+  .device-select-card.active {
     @apply border-huriky-yellow bg-huriky-glow;
   }
 
