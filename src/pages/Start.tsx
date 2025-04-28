@@ -114,7 +114,7 @@ const Start = () => {
   }
 
   const handleSelectSubscriptionPlan = async (subscription: any) => {
-    const userSubscriptionResult = subscription.type === 'trial' ? await subscriptionsService.activateTrial(userTelegramId, userTelegramUsername) : 
+    const userSubscriptionResult = subscription === 'trial' ? await subscriptionsService.activateTrial(userTelegramId, userTelegramUsername) : 
       await subscriptionsService.buySubscription(userTelegramId, userTelegramUsername, subscription);
 
     if (userSubscriptionResult) {
