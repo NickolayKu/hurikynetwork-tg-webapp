@@ -102,6 +102,7 @@
     z-index: -1;
     visibility: hidden;
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: all ease 0.2s;
     user-select: none;
   }
