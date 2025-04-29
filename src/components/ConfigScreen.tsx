@@ -29,7 +29,7 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         isActive ? "active" : ""
       }`}
     >
-      <div className="font-bold text-lg text-center fixed top-10">
+      <div className="font-bold text-lg text-center fixed top-6">
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>4</b> из <b>4</b> шагов</span>
         </div>

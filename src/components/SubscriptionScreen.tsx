@@ -14,11 +14,11 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
 
   return (
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col items-center justify-end pb-3 w-full ${isActive ? 'active' : ''}`}>
-      <div className="font-bold text-lg text-center fixed top-10">
+      <div className="font-bold text-lg text-center fixed top-6">
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>3</b> из <b>4</b> шагов</span>
         </div>
-        <div className="w-full mt-2 mb-3">Выберите подходящий тариф</div>
+        <div className="w-full mt-2 mb-2">Выберите подходящий тариф</div>
         <div className="flex items-center justify-center gap-6 w-full">
           <div className="flex items-center">
             <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
