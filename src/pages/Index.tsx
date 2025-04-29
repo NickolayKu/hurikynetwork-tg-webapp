@@ -40,8 +40,12 @@ const Index = () => {
       const userId = tg.initDataUnsafe?.user?.id;
       const userUsername = tg.initDataUnsafe?.user?.username;
 
+      if (!userUsername) {
+        setUserTelegramUsername(userId);
+      } else {
+        setUserTelegramUsername(userUsername);
+      }
       setUserTelegramId(userId);
-      setUserTelegramUsername(userUsername);
 
       tg.ready();
     }
