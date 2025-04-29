@@ -125,6 +125,8 @@ const Start = () => {
   return (
     <div className="h-full bg-telegram-bg flex flex-col scrollbar-none">
       <div className="w-full max-h-screen overflow-hidden mx-auto px-6">
+
+        Платформа: {tg?.platform}
           
         <StartScreen isActive={selectedScreen === 'start'} handleClickNextScreen={() => handleClickNextScreen()} />
         <DeviceScreen isActive={selectedScreen === 'device'} handleClickNextScreen={(device: string) => handleSelectDevice(device)} />
