@@ -137,7 +137,7 @@ const Index = () => {
         </div>
       </ScrollArea>
 
-      <LoadingScreen isShowing={isLoadingScreenShowing} />
+      <LoadingScreen isShowing={isLoadingScreenShowing} showIcon={false} />
 
       <MetrikaCounter
         id={101316785}
