@@ -14,6 +14,7 @@ import PremiumBotButton from '@/components/PremiumBotButton';
 import { MetrikaCounter } from 'react-metrika';
 import { daysUntil, formatTimestampToDate, hoursUntil } from '@/lib/utils';
 import { subscriptionsService } from '@/services/subscriptions.service';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const fetchUserData = async (username: string) => {
   const data = await api.getUserInfo(username);
@@ -29,6 +30,8 @@ const Index = () => {
   const [userTelegramId, setUserTelegramId] = useState(null);
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
+
+  const [isLoadingScreenShowing, setIsLoadingScreenShowing] = useState(false);
 
   const tg = window.Telegram.WebApp;
 
@@ -73,12 +76,18 @@ const Index = () => {
   }
 
   const handleSelectSubscriptionPlan = async (subscription: Subscription) => {
+    if (!isLoadingScreenShowing) {
+      setIsLoadingScreenShowing(true);
       const userSubscriptionResult = await subscriptionsService.buySubscription(userTelegramId, userTelegramUsername, subscription);
   
       if (userSubscriptionResult) {
         refetchUserData();
+        setIsLoadingScreenShowing(false);
         scrollToTop();
+      } else {
+        setIsLoadingScreenShowing(false);
       }
+    }
   }
 
   return (
@@ -127,6 +136,8 @@ const Index = () => {
           <PremiumBotButton />
         </div>
       </ScrollArea>
+
+      <LoadingScreen isShowing={isLoadingScreenShowing} />
 
       <MetrikaCounter
         id={101316785}

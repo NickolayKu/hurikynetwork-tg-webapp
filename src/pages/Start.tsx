@@ -30,9 +30,8 @@ const Start = () => {
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
 
-  const [isLoadingScreenShowing, setIsLoadingScreenShowing] = useState(false);
-
   const [userHaveSubscription, setUserHaveSubscription] = useState(false);
+  const [isLoadingScreenShowing, setIsLoadingScreenShowing] = useState(false);
 
   const tg = window.Telegram.WebApp;
 

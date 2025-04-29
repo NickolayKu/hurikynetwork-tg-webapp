@@ -101,8 +101,6 @@
     opacity: 0;
     z-index: -1;
     visibility: hidden;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
     transition: all ease 0.2s;
     user-select: none;
   }
