@@ -14,7 +14,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
   isActive = false 
 }) => {
   return (
-    <div className="huriky-card mb-6">
+    <div className="telegram-card bg-telegram-card/30 border-huriky-glow mb-6">
 
       <div className="flex items-center mb-3">
         <div className="w-10 h-10 bg-huriky-yellow/10 rounded-full flex items-center justify-center mr-3">
@@ -31,12 +31,12 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
             </div>
             <div>
               <p className="text-sm text-gray-300">Подписка до:</p>
-              <p className="font-bold text-huriky-yellow">{expiryDate}</p>
+              <p className="font-bold text-huriky-yellow text-[16px]">{expiryDate}</p>
             </div>
           </div>
           <div className="bg-green-500/10 rounded-lg p-3 flex items-center gap-2">
-            <Shield className="w-5 h-5 text-green-400" />
-            <p className="text-sm text-white">Статус: <span className="font-bold text-green-400">Активен</span></p>
+            <Shield className="w-5 h-5 text-green-400 -mt-[3px]" />
+            <p className="text-sm text-white">Статус: <span className="font-bold text-green-400 pl-1">Активен</span></p>
           </div>
         </div>
       ) : (

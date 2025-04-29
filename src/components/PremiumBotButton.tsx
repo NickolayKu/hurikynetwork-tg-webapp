@@ -12,10 +12,10 @@ const PremiumBotButton: React.FC = () => {
     <>
       <h3 className="font-bold text-lg mt-7 text-white mb-1">Купить звезды Telegram</h3>
       <p className="text-sm text-gray-400 mb-3">
-        Если у вас устройство на iOS, то вы можете купить звезды в отдельном официальном боте без наценок
+        Если у вас устройство на iOS, то вы можете купить звезды в отдельном боте без наценок Apple.
       </p>
 
-      <div className="telegram-card mt-3">
+      <div className="telegram-card bg-telegram-card/30 border-huriky-glow mt-3">
         <Button 
           style={{color: "#fecf16"}}
           className="w-full bg-sky-500/90 hover:bg-sky-600 flex items-center justify-center outline-none shadow-none"

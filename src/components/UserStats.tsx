@@ -54,14 +54,13 @@ const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt,
 
   if (isActive) {
     return (
-      <div className="space-y-4 mb-6">
+      <div className="space-y-3 mb-6">
         <h3 className="font-bold text-lg flex items-center gap-2">
-          <Activity className="w-5 h-5 text-huriky-yellow" />
-          Статистика
+          Ваша статистика
         </h3>
         
         <div className="grid grid-cols-2 gap-3">
-          <div className="stats-card pr-1">
+          <div className="stats-card bg-telegram-card/30 border-huriky-glow pr-1">
             <div className="h-10 w-6 rounded-full flex items-center justify-center">
               <Calendar className="h-5 w-5 text-huriky-yellow" />
             </div>
@@ -71,7 +70,7 @@ const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt,
             </div>
           </div>
           
-          <div className="stats-card">
+          <div className="stats-card bg-telegram-card/30 border-huriky-glow">
             <div className="h-10 w-6 rounded-full flex items-center justify-center">
               <Clock className="h-5 w-5 text-huriky-yellow" />
             </div>
@@ -82,7 +81,7 @@ const UserStats: React.FC<UserStatsProps> = ({ usedTraffic, dataLimit, onlineAt,
           </div>
         </div>
         
-        <div className="telegram-card">
+        <div className="telegram-card bg-telegram-card/30 border-huriky-glow p-4">
           <div className="flex justify-between items-center mb-2">
             <div className="flex items-center gap-2">
               <UploadCloud className="h-5 w-5 text-huriky-yellow" />

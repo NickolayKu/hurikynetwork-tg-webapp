@@ -104,7 +104,7 @@
   }
   
   .huriky-card {
-    @apply bg-huriky-darkCard text-white rounded-xl p-4 border-2 border-huriky-yellow relative overflow-hidden shadow-lg;
+    @apply bg-huriky-darkCard text-white rounded-xl p-4 relative overflow-hidden shadow-lg;
   }
   
   .telegram-card {

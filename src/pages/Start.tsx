@@ -66,8 +66,6 @@ const Start = () => {
     }
   }, [subsriptionsData]);
 
-  const [selectedPlan, setSelectedPlan] = useState<Subscription | null>(null);
-
   const [selectedScreen, setSelectedScreen] = useState<string | null>(null);
   const [selectedDevice, setSelectedDevice] = useState<string | null>(null);
 
@@ -76,14 +74,6 @@ const Start = () => {
       setSelectedScreen('start');
     }, 100)
   }, [])
-
-  const handleSelectPlan = (plan: Subscription) => {
-    if (plan === selectedPlan) {
-      setSelectedPlan(null);
-    } else {
-      setSelectedPlan(plan);
-    }
-  };
 
   const changeScreenAnimation = (screen: string) => {
     setSelectedScreen(null);

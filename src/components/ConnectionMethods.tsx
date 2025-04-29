@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React, { useState } from 'react';
-import { Smartphone, Laptop, Monitor, Tablet, CopyIcon } from 'lucide-react';
+import { Smartphone, Laptop, Monitor, Tablet, CopyIcon, ChevronDown } from 'lucide-react';
 import { ConnectionMethod } from '@/types';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetDescription, SheetClose } from '@/components/ui/sheet';
 import { toast } from '@/hooks/use-toast';
@@ -26,7 +26,27 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
     }
   };
   
-  const methods: ConnectionMethod[] = [
+  const methods: ConnectionMethod[] = [  
+    {
+      id: 'ios',
+      name: 'iOS',
+      icon: 'Smartphone',
+      apps: [
+        {
+          title: 'Streisand',
+          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
+        },
+        {
+          title: 'Shadowrocket',
+          link: 'https://apps.apple.com/ru/app/shadowrocket/id932747118',
+        },
+        {
+          title: 'Npv Tunnel',
+          link: 'https://apps.apple.com/ru/app/npv-tunnel/id1629465476',
+        },
+      ],
+      description: 'Смартфоны и планшеты'
+    },
     {
       id: 'android',
       name: 'Android',
@@ -45,27 +65,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           link: 'https://play.google.com/store/apps/details?id=ang.hiddify.com&hl=ru',
         },
       ],
-      description: 'v2rayNG, v2RayTun, HiddifyNG'
-    },
-    {
-      id: 'iphone',
-      name: 'Iphone',
-      icon: 'Smartphone',
-      apps: [
-        {
-          title: 'Streisand',
-          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
-        },
-        {
-          title: 'Shadowrocket',
-          link: 'https://apps.apple.com/ru/app/shadowrocket/id932747118',
-        },
-        {
-          title: 'Npv Tunnel',
-          link: 'https://apps.apple.com/ru/app/npv-tunnel/id1629465476',
-        },
-      ],
-      description: 'Streisand, Shadowrocket, Npv Tunnel'
+      description: 'Смартфоны, планшеты и телевизоры'
     },
     {
       id: 'windows',
@@ -85,7 +85,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           link: 'https://github.com/Qv2ray/Qv2ray/releases',
         },
       ],
-      description: 'V2rayN, Nekoray, QV2ray'
+      description: 'Ноутбуки и компьютеры'
     },
     {
       id: 'macos',
@@ -105,7 +105,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           link: 'https://github.com/clashdownload/ClashX_Pro/releases',
         },
       ],
-      description: 'Streisand, V2rayU, ClashX Pro'
+      description: 'Ноутбуки и компьютеры'
     },
     {
       id: 'linux',
@@ -125,7 +125,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           link: 'https://github.com/fossabot/clash',
         },
       ],
-      description: 'Nekoray, Qv2ray, Clash'
+      description: 'Ноутбуки, роутеры и компьютеры'
     }
   ];
   
@@ -140,15 +140,18 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
   };
 
   return (
-    <div className="mb-6">
-      <h3 className="font-bold text-lg mb-4">Способы подключения</h3>
+    <div className="mb-6">    
+      <h3 className="font-bold text-lg mb-1">Способы подключения</h3>
+      <p className="text-sm text-gray-400 mb-3">
+        Выберите систему для открытия инструкции.
+      </p>
       
       <div className="space-y-3">
         {methods.map((method) => (
           <Sheet key={method.id} onOpenChange={(open: boolean) => !open && setSelectedMethod(null)}>
             <SheetTrigger asChild>
               <div 
-                className={`connection-method ${selectedMethod === method.id ? 'active' : ''}`}
+                className={`device-select-card w-full telegram-card hover:bg-telegram-card/80 hover:border-huriky-yellow`}
                 onClick={() => setSelectedMethod(method.id)}
               >
                 <div className="w-12 h-12 rounded-full bg-huriky-glow flex items-center justify-center mr-3">
