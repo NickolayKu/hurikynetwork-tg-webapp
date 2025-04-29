@@ -10,6 +10,9 @@ interface ScreenProps {
 }
 
 const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, links}) => {
+  const tg = window.Telegram.WebApp;
+  const isDesktop = tg.platform === 'tdesktop';
+  
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(links?.join('\n'));
@@ -29,7 +32,7 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         isActive ? "active" : ""
       }`}
     >
-      <div className="font-bold text-lg text-center fixed top-6">
+      <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>4</b> из <b>4</b> шагов</span>
         </div>

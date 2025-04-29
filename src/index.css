@@ -96,6 +96,32 @@
   li::marker {
     color: rgb(255 199 0);
   }
+
+  .loading-screen {
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+    backdrop-filter: blur(4px);
+    transition: all ease 0.2s;
+    user-select: none;
+  }
+
+  .loading-screen.showing {
+    opacity: 1;
+    z-index: 99999;
+    visibility: visible;
+  }
+
+  .animate-loader {
+      animation: linear spin 1s infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 }
 
 @layer components {

@@ -9,6 +9,9 @@ interface ScreenProps {
 }
 
 const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selectedDevice, handleClickPrevScreen, isActive}) => {
+  const tg = window.Telegram.WebApp;
+  const isDesktop = tg.platform === 'tdesktop';
+
   const methods = [
     {
       id: 'android',
@@ -114,7 +117,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
 
   return (
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col justify-end items-center pb-3 w-full ${isActive ? 'active' : ''}`}>
-      <div className="font-bold text-lg text-center fixed top-6">
+      <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>2</b> из <b>4</b> шагов</span>
         </div>
@@ -136,7 +139,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
         })}
 
         <button 
-          className="telegram-button mt-8 bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
+          className="telegram-button mt-10 bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
           onClick={() => handleClickNextScreen()}>
           Продолжить
         </button>

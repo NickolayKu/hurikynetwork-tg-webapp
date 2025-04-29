@@ -89,13 +89,13 @@ export default {
 				"pulse-yellow": {
 					"0%, 100%": { boxShadow: "0 0 0 0 rgba(255, 199, 0, 0.4)" },
 					"50%": { boxShadow: "0 0 0 10px rgba(255, 199, 0, 0)" }
-				}
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 				"lightning-flash": "lightning-flash 2s ease-in-out infinite",
-				"pulse-yellow": "pulse-yellow 2s infinite"
+				"pulse-yellow": "pulse-yellow 2s infinite",
 			},
 		},
 	},

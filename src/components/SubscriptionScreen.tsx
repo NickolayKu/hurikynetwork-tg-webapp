@@ -11,10 +11,12 @@ interface ScreenProps {
 }
 
 const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handleClickPrevScreen, subscriptions, isActive}) => {
+  const tg = window.Telegram.WebApp;
+  const isDesktop = tg.platform === 'tdesktop';
 
   return (
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col items-center justify-end pb-3 w-full ${isActive ? 'active' : ''}`}>
-      <div className="font-bold text-lg text-center fixed top-6">
+      <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>3</b> из <b>4</b> шагов</span>
         </div>

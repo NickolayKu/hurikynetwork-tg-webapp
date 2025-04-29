@@ -11,6 +11,7 @@ import InstallAppScreen from '@/components/InstallAppScreen';
 import ConfigScreen from '@/components/ConfigScreen';
 import { subscriptionsService } from '@/services/subscriptions.service';
 import { useNavigate } from 'react-router-dom';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const fetchSubscriptionsData = async () => {
   const data = await api.getAllSubscriptions();
@@ -28,6 +29,8 @@ const Start = () => {
   const [userTelegramId, setUserTelegramId] = useState(null);
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
+
+  const [isLoadingScreenShowing, setIsLoadingScreenShowing] = useState(false);
 
   const [userHaveSubscription, setUserHaveSubscription] = useState(false);
 
@@ -104,12 +107,18 @@ const Start = () => {
   }
 
   const handleSelectSubscriptionPlan = async (subscription: any) => {
-    const userSubscriptionResult = subscription === 'trial' ? await subscriptionsService.activateTrial(userTelegramId, userTelegramUsername) : 
-      await subscriptionsService.buySubscription(userTelegramId, userTelegramUsername, subscription);
+    if (!isLoadingScreenShowing) {
+      setIsLoadingScreenShowing(true);
+      const userSubscriptionResult = subscription === 'trial' ? await subscriptionsService.activateTrial(userTelegramId, userTelegramUsername) : 
+        await subscriptionsService.buySubscription(userTelegramId, userTelegramUsername, subscription);
 
-    if (userSubscriptionResult) {
-      setUserHaveSubscription(true);    
-      changeScreenAnimation('config');
+      if (userSubscriptionResult) {
+        setUserHaveSubscription(true);    
+        setIsLoadingScreenShowing(false);
+        changeScreenAnimation('config');
+      } else {
+        setIsLoadingScreenShowing(false);
+      }
     }
   }
 
@@ -125,8 +134,6 @@ const Start = () => {
   return (
     <div className="h-full bg-telegram-bg flex flex-col scrollbar-none">
       <div className="w-full max-h-screen overflow-hidden mx-auto px-6">
-
-        Платформа: {tg?.platform}
           
         <StartScreen isActive={selectedScreen === 'start'} handleClickNextScreen={() => handleClickNextScreen()} />
         <DeviceScreen isActive={selectedScreen === 'device'} handleClickNextScreen={(device: string) => handleSelectDevice(device)} />
@@ -136,7 +143,10 @@ const Start = () => {
           subscriptions={subscriptions} handleClickPrevScreen={() => handleClickPrevScreen()} />
         <ConfigScreen isActive={selectedScreen === 'config'} links={currentUserData ? currentUserData.links : ['']} 
           handleClickNextScreen={() => handleClickNextScreen()} />
+
       </div>
+
+      <LoadingScreen isShowing={isLoadingScreenShowing} />
 
       <MetrikaCounter
         id={101316785}
