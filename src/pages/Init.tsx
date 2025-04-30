@@ -33,10 +33,10 @@ const Init = () => {
       const userId = tg.initDataUnsafe?.user?.id;
       //const userUsername = 'ni_cko_lay123123';
   
-      if (userUsername) {
-        setTelegramUsername(userUsername);
+      if (!userUsername) {
+        if (userId) setTelegramUsername(userId);
       } else {
-        setTelegramUsername(userId);
+        setTelegramUsername(userUsername);
       }
 
       tg.ready();
