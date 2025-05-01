@@ -7,6 +7,7 @@ interface SubscriptionCardProps {
   type: 'monthly' | 'quarterly' | 'yearly' | 'trial';
   price: number;
   isPopular?: boolean;
+  isBigHeight?: boolean;
   onClick: () => void;
 }
 
@@ -15,6 +16,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   type, 
   price, 
   isPopular = false,
+  isBigHeight = false,
   onClick 
 }) => {
   const tg = window.Telegram.WebApp;
@@ -40,7 +42,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   };
 
   return (
-    <div className={`telegram-card relative ${isDesktop ? 'py-3' : 'py-5'} mb-4 hover:bg-telegram-card/80 w-full transition-all cursor-pointer 
+    <div className={`telegram-card ${isBigHeight && 'big-height-tarif-card'} relative ${isDesktop ? 'py-3' : 'py-5'} mb-4 hover:bg-telegram-card/80 w-full transition-all cursor-pointer 
       border-2 hover:border-huriky-yellow ${type === 'trial' && 'border-huriky-yellow/30'}`} onClick={onClick}>
       {/* {isPopular && (
         <div className="absolute top-0 right-0 bg-huriky-yellow text-black text-xs font-bold py-1 px-2 rounded-bl-lg rounded-tr-md flex items-center gap-1">

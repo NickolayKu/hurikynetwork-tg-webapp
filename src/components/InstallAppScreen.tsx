@@ -119,7 +119,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col justify-end items-center pb-3 w-full ${isActive ? 'active' : ''}`}>
       <div className={`font-bold text-lg text-center px-4 fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
-          <span className="text-huriky-yellow font-medium"><b>2</b> из <b>4</b> шагов</span>
+          <span className="text-huriky-yellow font-medium"><b>2</b> шаг из <b>4</b> — Приложение</span>
         </div>
         <div className="mt-2 px-4">
           Установите подходящее приложение для подключения

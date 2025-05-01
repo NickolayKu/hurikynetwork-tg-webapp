@@ -18,7 +18,7 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col items-center justify-end pb-3 w-full ${isActive ? 'active' : ''}`}>
       <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
-          <span className="text-huriky-yellow font-medium"><b>3</b> из <b>4</b> шагов</span>
+          <span className="text-huriky-yellow font-medium"><b>2</b> шаг из <b>4</b> — Тариф</span>
         </div>
         <div className="w-full mt-2 mb-2">Выберите подходящий тариф</div>
         <div className="flex items-center justify-center gap-6 w-full">
@@ -38,6 +38,7 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
         isSelected={false}
         type={"trial"}
         price={0}
+        isBigHeight={true}
         isPopular={false}
         onClick={() => handleClickNextScreen('trial')}
       />
@@ -48,6 +49,7 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
             key={sub.type}
             isSelected={false}
             type={sub.type}
+            isBigHeight={true}
             price={sub.price}
             isPopular={sub.isPopular}
             onClick={() => handleClickNextScreen(sub)}
