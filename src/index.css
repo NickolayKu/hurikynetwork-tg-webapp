@@ -115,6 +115,25 @@
       animation: linear spin 1s infinite;
   }
 
+  .device-select-card {
+    height: calc(71vh / 5);
+  }
+
+  .device-select-card-small {
+    height: calc(50vh / 5);
+    margin-bottom: 0.75rem;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-color: rgb(55 65 81 / 0.3);
+    padding: 0.75rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
   @keyframes spin {
     to {
       transform: rotate(360deg);

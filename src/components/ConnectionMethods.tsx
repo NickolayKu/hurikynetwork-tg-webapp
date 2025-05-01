@@ -45,7 +45,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           link: 'https://apps.apple.com/ru/app/npv-tunnel/id1629465476',
         },
       ],
-      description: 'Смартфоны и планшеты'
+      description: 'Устройства iPhone и iPad'
     },
     {
       id: 'android',
@@ -143,7 +143,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
     <div className="mb-6">    
       <h3 className="font-bold text-lg mb-1">Способы подключения</h3>
       <p className="text-sm text-gray-400 mb-3">
-        Выберите систему для открытия инструкции.
+        Вы можете подключить до 5 разных устройств.
       </p>
       
       <div className="space-y-3">
@@ -151,7 +151,7 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           <Sheet key={method.id} onOpenChange={(open: boolean) => !open && setSelectedMethod(null)}>
             <SheetTrigger asChild>
               <div 
-                className={`device-select-card w-full telegram-card hover:bg-telegram-card/80 hover:border-huriky-yellow`}
+                className={`device-select-card-small w-full telegram-card hover:bg-telegram-card/80 hover:border-huriky-yellow`}
                 onClick={() => setSelectedMethod(method.id)}
               >
                 <div className="w-12 h-12 rounded-full bg-huriky-glow flex items-center justify-center mr-3">

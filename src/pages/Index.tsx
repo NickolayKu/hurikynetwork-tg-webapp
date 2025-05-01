@@ -15,6 +15,7 @@ import { MetrikaCounter } from 'react-metrika';
 import { daysUntil, formatTimestampToDate, hoursUntil } from '@/lib/utils';
 import { subscriptionsService } from '@/services/subscriptions.service';
 import LoadingScreen from '@/components/LoadingScreen';
+import UpdateTrafficButton from '@/components/UpdateTrafficButton';
 
 const fetchUserData = async (username: string) => {
   const data = await api.getUserInfo(username);
@@ -113,7 +114,9 @@ const Index = () => {
               expireDays={daysUntil(currentUserData.expire)} expireHours={hoursUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
           )}
 
-          {currentUserData && <ConnectionMethods links={currentUserData?.links} />}
+          {currentUserData && (
+            <UpdateTrafficButton />
+          )}
 
           {currentUserData && (
             <>
@@ -135,9 +138,12 @@ const Index = () => {
             />
           ))}
 
-          <SupportButton />
+          {currentUserData && <ConnectionMethods links={currentUserData?.links} />}
 
           <PremiumBotButton />
+
+          <SupportButton />
+
         </div>
       </ScrollArea>
 

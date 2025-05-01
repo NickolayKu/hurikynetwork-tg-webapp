@@ -21,12 +21,12 @@ const StartScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive}) =
       </div>
 
       <div className="font-bold text-lg mt-16 text-white">
-        Получите свой приватный VLESS <br/> доступ всего 
-        <span className="text-huriky-yellow"> за 4 шага</span> !
+        Безопасный доступ к интернету <br/>
+        <span className="text-huriky-yellow"> за 4 простых шага</span> !
       </div>
 
       <p className="text-sm text-gray-400 mt-6">
-        Просто следуйте дальнейшим шагам и мы поможет вам получить конфиг на ваше устройство и начать его использование
+        Следуйте шагам — и получите готовую конфигурацию для своего устройства
       </p>
       
       <div className='screen-footer absolute bottom-6 w-full px-6'>
@@ -34,7 +34,7 @@ const StartScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive}) =
           className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
           onClick={() => handleClickNextScreen()}
         >
-          Начать
+          Получить доступ
         </button>
       </div>
     </div>

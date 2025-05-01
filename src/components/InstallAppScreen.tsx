@@ -117,29 +117,29 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
 
   return (
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col justify-end items-center pb-3 w-full ${isActive ? 'active' : ''}`}>
-      <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
+      <div className={`font-bold text-lg text-center px-4 fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>2</b> из <b>4</b> шагов</span>
         </div>
         <div className="mt-2 px-4">
-          Скачайте и установите на своё устройство одно из приложений
+          Установите подходящее приложение для подключения
         </div>
         <p className="text-sm text-gray-400 mt-6">
-          Если у вас уже имеется другое приложение <br/> для поключения по протоколу VLESS, <br/> то этот шаг можно пропустить
+          Если у вас уже есть подходящее приложение — можете сразу перейти дальше
         </p>
       </div>
 
       <div className="screen-footer w-full mb-3">
         {methods.find((method) => method.id === selectedDevice)?.apps?.map((item: any, index: number) => {
           return (
-            <a key={index} target='_blank' href={item.link} className="telegram-button mb-3 bg-huriky-card hover:bg-huriky-card/50 text-sky-500 flex items-center justify-center outline-none shadow-none w-full">
+            <a key={index} target='_blank' href={item.link} className="telegram-button select-app-button mb-3 bg-huriky-card hover:bg-huriky-card/50 text-sky-500 flex items-center justify-center outline-none shadow-none w-full">
               {item.title}
             </a>
           );
         })}
 
         <button 
-          className="telegram-button mt-10 bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
+          className="telegram-button mt-16 bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
           onClick={() => handleClickNextScreen()}>
           Продолжить
         </button>

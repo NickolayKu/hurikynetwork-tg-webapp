@@ -57,7 +57,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
       <div className="flex justify-between items-center">
         <div>
           <h3 className="font-bold text-lg flex items-center gap-1">
-            {typeTitles[type]}
+            {typeTitles[type]} {isPopular && <span className='pl-1 font-bold text-huriky-yellow'>ХИТ!</span>}
             {type === 'trial' && <p className="font-bold text-lg">Пробный</p>}
           </h3>
           <p className="text-sm text-gray-400">

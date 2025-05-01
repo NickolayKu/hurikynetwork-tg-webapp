@@ -16,10 +16,10 @@ const DeviceScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive}) 
 
       <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
-          <span className="text-huriky-yellow font-medium"><b>1</b> из <b>4</b> шагов</span>
+          <span className="text-huriky-yellow font-medium"><b>1</b> шаг из <b>4</b> — Устройство</span>
         </div>
         <div className='w-full mt-2'>
-          Выберите операционную систему <br/> вашего устройства
+          С чего вы подключаетесь?
         </div>
       </div>
 
@@ -30,7 +30,7 @@ const DeviceScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive}) 
         </div>
         <div className="flex-1">
           <h4 className="font-medium">iOS</h4>
-          <p className="text-xs text-gray-400">Смартфоны и планшеты</p>
+          <p className="text-xs text-gray-400">Устройства iPhone и iPad</p>
         </div>
       </div>
       <div className={`device-select-card w-full telegram-card hover:bg-telegram-card/80 ${isDesktop ? 'p-3' : 'p-4'} pr-2 hover:border-huriky-yellow`}  
