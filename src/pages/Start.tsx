@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Subscription } from '@/types';
 import { useQuery } from "@tanstack/react-query";
 import { api } from '@/services/api';
 import { useEffect, useState } from "react";
@@ -77,7 +76,7 @@ const Start = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setSelectedScreen('config');
+      setSelectedScreen('start');
     }, 100)
   }, [])
 
