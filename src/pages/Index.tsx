@@ -95,6 +95,21 @@ const Index = () => {
     }
   }
 
+  const handleBuyResetSubscriptionTraffic = async () => {
+    if (!isLoadingScreenShowing) {
+      setIsLoadingScreenShowing(true);
+      const userResetSubscriptionTrafficResult = await subscriptionsService.buyResetSubscriptionTraffic(userTelegramId, userTelegramUsername);
+
+      if (userResetSubscriptionTrafficResult) {
+        refetchUserData();
+        setIsLoadingScreenShowing(false);
+        scrollToTop();
+      } else {
+        setIsLoadingScreenShowing(false);
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen bg-telegram-bg flex flex-col">
       
@@ -115,7 +130,7 @@ const Index = () => {
           )}
 
           {currentUserData && (
-            <UpdateTrafficButton />
+            <UpdateTrafficButton handleBuyResetTraffic={() => handleBuyResetSubscriptionTraffic()} />
           )}
 
           {currentUserData && (
