@@ -37,7 +37,7 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         <span className="text-huriky-yellow font-medium"><b>4</b> шаг из <b>4</b> — Подключение</span>
         </div>
         <div className="mt-2 px-4">
-          Небольшая настройка и можно начинать пользоваться
+          Заключительные три действия — и вы в сети
         </div>
       </div>
 
