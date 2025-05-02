@@ -29,10 +29,10 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   };
   
   const typeDescriptions = {
-    trial: '3 дня доступа',
-    monthly: '30 дней доступа',
-    quarterly: '90 дней доступа',
-    yearly: '365 дней доступа'
+    trial: '3 дня без ограничений',
+    monthly: '30 дней безлимитного доступа',
+    quarterly: '90 дней свободы и скорости',
+    yearly: 'Весь год без ограничений'
   };
   
   const discount = {
@@ -44,11 +44,11 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   return (
     <div className={`telegram-card ${isBigHeight && 'big-height-tarif-card'} relative ${isDesktop ? 'py-3' : 'py-5'} mb-4 hover:bg-telegram-card/80 w-full transition-all cursor-pointer 
       border-2 hover:border-huriky-yellow ${type === 'trial' && 'border-huriky-yellow/30'}`} onClick={onClick}>
-      {/* {isPopular && (
-        <div className="absolute top-0 right-0 bg-huriky-yellow text-black text-xs font-bold py-1 px-2 rounded-bl-lg rounded-tr-md flex items-center gap-1">
-          <Award className="w-3 h-3" /> САМЫЙ ПОПУЛЯРНЫЙ
+      {isPopular && (
+        <div className="absolute top-0 left-0 bg-huriky-yellow text-black text-[11px] py-0 font-bold pt-[2px] px-3 rounded-br-lg rounded-tl-md flex items-center gap-1">
+          ХИТ
         </div>
-      )} */}
+      )}
 
       {discount[type] && (
         <span className="absolute top-0 right-0 bg-green-900/50 text-green-400 text-[11px] font-bold px-3 rounded-bl-lg rounded-tr-md flex items-center gap-1">
@@ -59,7 +59,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
       <div className="flex justify-between items-center">
         <div>
           <h3 className="font-bold text-lg flex items-center gap-1">
-            {typeTitles[type]} {isPopular && <span className='pl-1 font-bold text-huriky-yellow'>ХИТ!</span>}
+            {typeTitles[type]}
             {type === 'trial' && <p className="font-bold text-lg">Пробный</p>}
           </h3>
           <p className="text-sm text-gray-400">

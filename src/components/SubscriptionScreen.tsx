@@ -16,21 +16,15 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
 
   return (
     <div className={`start-page-screen min-h-screen flex fixed top-0 left-0 right-0 px-5 flex-col items-center justify-end pb-3 w-full ${isActive ? 'active' : ''}`}>
-      <div className={`font-bold text-lg text-center fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
+      <div className={`font-bold text-lg text-center px-6 fixed ${isDesktop ? 'top-6' : 'top-9'}`}>
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
           <span className="text-huriky-yellow font-medium"><b>2</b> шаг из <b>4</b> — Тариф</span>
         </div>
-        <div className="w-full mt-2 mb-2">Выберите подходящий тариф</div>
-        <div className="flex items-center justify-center gap-6 w-full">
-          <div className="flex items-center">
-            <UploadCloud className="w-4 h-4 text-huriky-yellow mr-2" />
-            <span className="text-[13px] text-gray-400">150 Гб в месяц</span>
-          </div>
-          <div className="flex items-center">
-            <Wifi className="w-4 h-4 text-huriky-yellow mr-2" />
-            <span className="text-[13px] text-gray-400">Скорость до 150 Мб/с</span>
-          </div>
-        </div>
+        <div className="w-full mt-2 mb-4">Максимум скорости и анонимности — выберите свой тариф</div>
+          <ol className="list-disc pl-6 space-y-2 text-sm text-gray-400 text-left">
+            {window.innerHeight >= 670 && (<li>До 150 Мб/с и 150 ГБ в месяц — хватит для всего!</li>)}
+            {window.innerHeight >= 765 && (<li>Все тарифы — с высоким шифрованием и стабильной скоростью</li>)}
+          </ol>
       </div>
 
       <SubscriptionCard

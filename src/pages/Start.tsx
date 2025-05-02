@@ -77,7 +77,7 @@ const Start = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setSelectedScreen('start');
+      setSelectedScreen('config');
     }, 100)
   }, [])
 

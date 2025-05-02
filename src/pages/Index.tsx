@@ -7,7 +7,7 @@ import ConnectionMethods from '@/components/ConnectionMethods';
 import { Subscription } from '@/types';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import SupportButton from '@/components/SupportButton';
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from '@/services/api';
 import { useEffect, useState } from "react";
 import PremiumBotButton from '@/components/PremiumBotButton';
@@ -28,6 +28,8 @@ const fetchSubscriptionsData = async () => {
 };
 
 const Index = () => {
+  const queryClient = useQueryClient();
+
   const [userTelegramId, setUserTelegramId] = useState(null);
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
@@ -101,10 +103,14 @@ const Index = () => {
       const userResetSubscriptionTrafficResult = await subscriptionsService.buyResetSubscriptionTraffic(userTelegramId, userTelegramUsername);
 
       if (userResetSubscriptionTrafficResult) {
-        refetchUserData();
+        queryClient.setQueryData(['current_user'], (oldData: any) => ({
+          ...oldData,
+          used_traffic: 0,
+        }));
         setIsLoadingScreenShowing(false);
         scrollToTop();
       } else {
+        refetchUserData();
         setIsLoadingScreenShowing(false);
       }
     }
