@@ -36,12 +36,12 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         <div className="inline-block rounded-lg bg-gray-950/60 px-3 py-1 text-xs">
         <span className="text-huriky-yellow font-medium"><b>4</b> шаг из <b>4</b> — Подключение</span>
         </div>
-        <div className="mt-2 px-4">
+        <div className="mt-2 px-6">
           Заключительные действия — и вы в сети
         </div>
       </div>
 
-      <div className='absolute top-1/3 left-5 right-5'>
+      <div className='fixed top-1/3 left-5 right-5'>
         <ol className="list-decimal space-y-4 text-gray-200 px-5">
           <li><span className='text-huriky-yellow'>Скопируйте конфигурацию</span> — нажмите на кнопку ниже.</li>
           <li><span className='text-huriky-yellow'>Откройте приложение</span> и нажмите «Добавить» или «+», затем выберите «Из буфера обмена».</li>
@@ -55,7 +55,7 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         ) : null}
       </div>
 
-      <div className="screen-footer w-full mb-3">
+      <div className="screen-footer fixed bottom-6 left-6 right-6">
         <button
           className="telegram-button mt-7 bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
           onClick={() => handleClickNextScreen()}

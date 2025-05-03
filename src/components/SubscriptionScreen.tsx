@@ -23,40 +23,42 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
         <div className="w-full mt-2 mb-4">Максимум скорости и анонимности — выберите свой тариф</div>
           <ol className="list-disc pl-6 space-y-2 text-sm text-gray-400 text-left">
             {window.innerHeight >= 670 && (<li>До 150 Мб/с и 150 ГБ в месяц — хватит для всего!</li>)}
-            {window.innerHeight >= 765 && (<li>Все тарифы — с высоким шифрованием и стабильной скоростью</li>)}
+            {window.innerHeight >= 728 && (<li>Все тарифы — с высоким шифрованием и стабильной скоростью</li>)}
           </ol>
       </div>
 
-      <SubscriptionCard
-        key={"trial"}
-        isSelected={false}
-        type={"trial"}
-        price={0}
-        isBigHeight={true}
-        isPopular={false}
-        onClick={() => handleClickNextScreen('trial')}
-      />
+      <div className='fixed bottom-6 left-6 right-6'>
+        <SubscriptionCard
+          key={"trial"}
+          isSelected={false}
+          type={"trial"}
+          price={0}
+          isBigHeight={true}
+          isPopular={false}
+          onClick={() => handleClickNextScreen('trial')}
+        />
 
-      {subscriptions &&
-        subscriptions?.map((sub: any) => (
-          <SubscriptionCard
-            key={sub.type}
-            isSelected={false}
-            type={sub.type}
-            isBigHeight={true}
-            price={sub.price}
-            isPopular={sub.isPopular}
-            onClick={() => handleClickNextScreen(sub)}
-          />
-        ))}
+        {subscriptions &&
+          subscriptions?.map((sub: any) => (
+            <SubscriptionCard
+              key={sub.type}
+              isSelected={false}
+              type={sub.type}
+              isBigHeight={true}
+              price={sub.price}
+              isPopular={sub.isPopular}
+              onClick={() => handleClickNextScreen(sub)}
+            />
+          ))}
 
-      <div className='screen-footer w-full mb-3'>
-        <button
-          className="telegram-button bg-gray-600 hover:bg-gray-700 text-gray-100 flex items-center justify-center outline-none shadow-none w-full"
-          onClick={() => handleClickPrevScreen()}
-        >
-          Вернуться назад
-        </button>
+        <div className='screen-footer w-full'>
+          <button
+            className="telegram-button bg-gray-600 hover:bg-gray-700 text-gray-100 flex items-center justify-center outline-none shadow-none w-full"
+            onClick={() => handleClickPrevScreen()}
+          >
+            Вернуться назад
+          </button>
+        </div>
       </div>
     </div>
   );

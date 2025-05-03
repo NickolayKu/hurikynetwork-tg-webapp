@@ -129,7 +129,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
         </p>
       </div>
 
-      <div className="screen-footer w-full mb-3">
+      <div className="screen-footer fixed bottom-6 left-6 right-6">
         {methods.find((method) => method.id === selectedDevice)?.apps?.map((item: any, index: number) => {
           return (
             <a key={index} target='_blank' href={item.link} className="telegram-button select-app-button mb-3 bg-huriky-card hover:bg-huriky-card/50 text-sky-500 flex items-center justify-center outline-none shadow-none w-full">

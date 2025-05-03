@@ -135,7 +135,7 @@
   }
 
   .big-height-tarif-card {
-    height: calc(53vh / 4);
+    height: calc(50vh / 4);
     display: flex;
     flex-direction: column;
     justify-content: center;
