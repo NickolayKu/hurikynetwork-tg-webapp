@@ -46,6 +46,21 @@ class Api {
     }
   }
 
+  async initResetSubscriptionTrafficInvoice(telegramUserId: string, telegramUsername: string) {
+    try {
+      const { data } = await this.api.post(`/subscriptions/reset_traffic/invoice`, {
+        telegramUserId: telegramUserId,
+        username: telegramUsername,
+        order: {
+          type: 'reset_traffic',
+        }
+      });
+      return data;
+    } catch(error){
+      return error;
+    }
+  }
+
   async initTrialSubscription(telegramUserId: string, telegramUsername: string) {
     try {
       const result = await this.api.post(`/subscriptions/trial`, {

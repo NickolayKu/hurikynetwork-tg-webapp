@@ -80,6 +80,74 @@
     font-family: 'Roboto', sans-serif;
     @apply text-telegram-text;
   }
+
+  .start-page-screen {
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.2s;
+    overflow: hidden;
+  }
+  
+  .start-page-screen.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  li::marker {
+    color: rgb(255 199 0);
+  }
+
+  .loading-screen {
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+    transition: all ease 0.2s;
+    user-select: none;
+  }
+
+  .loading-screen.showing {
+    opacity: 1;
+    z-index: 99999;
+    visibility: visible;
+  }
+
+  .animate-loader {
+      animation: linear spin 1s infinite;
+  }
+
+  .device-select-card {
+    height: calc(68vh / 5);
+  }
+
+  .device-select-card-small {
+    height: calc(50vh / 5);
+    margin-bottom: 0.75rem;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-color: rgb(55 65 81 / 0.3);
+    padding: 0.75rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .big-height-tarif-card {
+    height: calc(48vh / 4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 85px;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 }
 
 @layer components {
@@ -88,7 +156,7 @@
   }
   
   .huriky-card {
-    @apply bg-huriky-darkCard text-white rounded-xl p-4 border-2 border-huriky-yellow relative overflow-hidden shadow-lg;
+    @apply bg-huriky-darkCard text-white rounded-xl p-4 relative overflow-hidden shadow-lg;
   }
   
   .telegram-card {
@@ -116,6 +184,14 @@
   }
 
   .connection-method.active {
+    @apply border-huriky-yellow bg-huriky-glow;
+  }
+
+  .device-select-card {
+    @apply border border-gray-700/30 rounded-xl p-3 mb-3 flex items-center cursor-pointer transition-all hover:border-huriky-yellow;
+  }
+
+  .device-select-card.active {
     @apply border-huriky-yellow bg-huriky-glow;
   }
 
