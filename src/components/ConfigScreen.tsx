@@ -37,7 +37,7 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         <span className="text-huriky-yellow font-medium"><b>4</b> шаг из <b>4</b> — Подключение</span>
         </div>
         <div className="mt-2 px-6">
-          Заключительные действия — и вы в сети
+          Заключительные действия — <br/> и вы в сети
         </div>
       </div>
 
@@ -55,7 +55,7 @@ const ConfigScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive, l
         ) : null}
       </div>
 
-      <div className="screen-footer fixed bottom-6 left-6 right-6">
+      <div className="screen-footer fixed bottom-8 left-6 right-6">
         <button
           className="telegram-button mt-7 bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
           onClick={() => handleClickNextScreen()}

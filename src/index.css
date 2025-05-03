@@ -135,10 +135,11 @@
   }
 
   .big-height-tarif-card {
-    height: calc(50vh / 4);
+    height: calc(48vh / 4);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 85px;
   }
 
   @keyframes spin {

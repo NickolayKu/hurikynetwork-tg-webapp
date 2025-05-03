@@ -29,7 +29,7 @@ const StartScreen: React.FC<ScreenProps> = ({handleClickNextScreen, isActive}) =
         Следуйте шагам — и получите готовую конфигурацию для своего устройства
       </p>
       
-      <div className='screen-footer fixed bottom-6 w-full px-6'>
+      <div className='screen-footer fixed bottom-8 w-full px-6'>
         <button
           className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none w-full"
           onClick={() => handleClickNextScreen()}

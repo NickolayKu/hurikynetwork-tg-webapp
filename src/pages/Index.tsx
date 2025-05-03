@@ -28,20 +28,20 @@ const fetchSubscriptionsData = async () => {
 };
 
 const Index = () => {
-  const queryClient = useQueryClient();
-
   const [userTelegramId, setUserTelegramId] = useState(null);
   const [userTelegramUsername, setUserTelegramUsername] = useState(null);
   const [subscriptions, setSubscriptions] = useState(null);
 
   const [isLoadingScreenShowing, setIsLoadingScreenShowing] = useState(false);
 
+  const [userTrafficUsage, setUserTrafficUsage] = useState(0);
+
   const tg = window.Telegram.WebApp;
 
   useEffect(() => {
     if (tg.initDataUnsafe) {
       const userId = tg.initDataUnsafe?.user?.id;
-      const userUsername = tg.initDataUnsafe?.user?.username || 'Huriky';
+      const userUsername = tg.initDataUnsafe?.user?.username;
 
       if (!userUsername) {
         if (userId) setUserTelegramUsername(userId);
@@ -75,6 +75,12 @@ const Index = () => {
     }
   }, [subsriptionsData]);
 
+  useEffect(() => {
+    if (currentUserData) {
+      setUserTrafficUsage(currentUserData.used_traffic);
+    }
+  }, [currentUserData])
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -88,7 +94,9 @@ const Index = () => {
       const userSubscriptionResult = await subscriptionsService.buySubscription(userTelegramId, userTelegramUsername, subscription);
   
       if (userSubscriptionResult) {
-        refetchUserData();
+        setTimeout(() => {
+          refetchUserData();
+        }, 200)
         setIsLoadingScreenShowing(false);
         scrollToTop();
       } else {
@@ -103,14 +111,10 @@ const Index = () => {
       const userResetSubscriptionTrafficResult = await subscriptionsService.buyResetSubscriptionTraffic(userTelegramId, userTelegramUsername);
 
       if (userResetSubscriptionTrafficResult) {
-        queryClient.setQueryData(['current_user'], (oldData: any) => ({
-          ...oldData,
-          used_traffic: 0,
-        }));
+        setUserTrafficUsage(0);
         setIsLoadingScreenShowing(false);
         scrollToTop();
       } else {
-        refetchUserData();
         setIsLoadingScreenShowing(false);
       }
     }
@@ -131,7 +135,7 @@ const Index = () => {
           />
           
           {(currentUserData && currentUserData.status === "active") && (
-            <UserStats usedTraffic={currentUserData.used_traffic} dataLimit={currentUserData.data_limit} onlineAt={currentUserData.online_at} 
+            <UserStats usedTraffic={userTrafficUsage} dataLimit={currentUserData.data_limit} onlineAt={currentUserData.online_at} 
               expireDays={daysUntil(currentUserData.expire)} expireHours={hoursUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
           )}
 
