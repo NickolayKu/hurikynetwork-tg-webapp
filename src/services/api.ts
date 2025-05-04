@@ -5,7 +5,7 @@ class Api {
   private api: AxiosInstance;
 
   constructor() {
-    this.baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    this.baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
     this.api = axios.create({
       baseURL: this.baseUrl,
     });
