@@ -16,7 +16,10 @@ class SubscriptionsService {
         const tg = window.Telegram.WebApp;
         tg.openInvoice(invoiceData.result, (status: string) => {
           if (status === 'paid') {
-            return true;
+            setTimeout(() => {
+              window.location.reload();
+              return true;
+            }, 300);
           } else {
             if (status === 'failed') {
               toast({
