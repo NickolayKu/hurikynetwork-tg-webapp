@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:20.18.1-alpine3.21 AS build
+FROM node:20.18.1-alpine3.21 AS build
 
 WORKDIR /usr/src/huriky-telegram-access
 
@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-FROM public.ecr.aws/nginx/nginx:stable-alpine
+FROM nginx:stable-alpine
 
 COPY --from=build /usr/src/huriky-telegram-access/dist /usr/share/nginx/html
 
