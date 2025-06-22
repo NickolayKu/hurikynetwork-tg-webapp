@@ -39,3 +39,14 @@ export function formatTimestampToDate(timestamp: number): string {
 
   return `${day}.${month}.${year}`;
 }
+
+export function isTrafficUpdateAvailable(usedTraffic: number): boolean {
+  const usedTrafficInGb = (usedTraffic / (1024 ** 3)).toFixed(0);
+  const trafficForAvailablity = import.meta.env.VITE_UPDATE_TRAFFIC_AVAILABLE_AFTER_GB || 100;
+
+  if (usedTrafficInGb >= trafficForAvailablity) {
+    return true;
+  } else {
+    return false;
+  }
+}

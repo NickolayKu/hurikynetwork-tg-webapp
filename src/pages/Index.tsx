@@ -12,7 +12,7 @@ import { api } from '@/services/api';
 import { useEffect, useState } from "react";
 import PremiumBotButton from '@/components/PremiumBotButton';
 import { MetrikaCounter } from 'react-metrika';
-import { daysUntil, formatTimestampToDate, hoursUntil } from '@/lib/utils';
+import { daysUntil, formatTimestampToDate, hoursUntil, isTrafficUpdateAvailable } from '@/lib/utils';
 import { subscriptionsService } from '@/services/subscriptions.service';
 import LoadingScreen from '@/components/LoadingScreen';
 import UpdateTrafficButton from '@/components/UpdateTrafficButton';
@@ -139,7 +139,7 @@ const Index = () => {
               expireDays={daysUntil(currentUserData.expire)} expireHours={hoursUntil(currentUserData.expire)} isActive={currentUserData.status === "active"} />
           )}
 
-          {currentUserData && (
+          {(currentUserData && isTrafficUpdateAvailable(currentUserData.used_traffic)) && (
             <UpdateTrafficButton handleBuyResetTraffic={() => handleBuyResetSubscriptionTraffic()} />
           )}
 
