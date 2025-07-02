@@ -41,8 +41,7 @@ const Index = () => {
   useEffect(() => {
     if (tg.initDataUnsafe) {
       const userId = tg.initDataUnsafe?.user?.id;
-      //const userUsername = tg.initDataUnsafe?.user?.username;
-      const userUsername = 'ni_cko_lay';
+      const userUsername = tg.initDataUnsafe?.user?.username;
 
       if (!userUsername) {
         if (userId) setUserTelegramUsername(userId);
