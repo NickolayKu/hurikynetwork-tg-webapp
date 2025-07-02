@@ -21,7 +21,7 @@ const SubscriptionScreen: React.FC<ScreenProps> = ({handleClickNextScreen, handl
         </div>
         <div className="w-full mt-2 mb-4">Максимум скорости и анонимности — выберите свой тариф</div>
           <ol className="list-disc pl-6 space-y-1 text-sm text-gray-400 text-left">
-            {window.innerHeight >= 665 && (<li>До 150 Мб/с и 150 ГБ в месяц — хватит для всего!</li>)}
+            {window.innerHeight >= 665 && (<li>До 180 Мб/с и 180 ГБ в месяц — хватит для всего!</li>)}
             {window.innerHeight >= 706 && (<li>Все тарифы — с высоким шифрованием и стабильной скоростью</li>)}
           </ol>
       </div>

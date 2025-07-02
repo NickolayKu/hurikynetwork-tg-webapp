@@ -5,14 +5,29 @@ import { User, Clock, Shield, Info } from 'lucide-react';
 interface AccountInfoProps {
   username?: string;
   expiryDate?: string;
+  usedTraffic?: number;
+  dataLimit?: string;
   isActive?: boolean;
 }
 
 const AccountInfo: React.FC<AccountInfoProps> = ({ 
   username = "Пользователь не определен", 
+  usedTraffic,
+  dataLimit,
   expiryDate, 
   isActive = false 
 }) => {
+  const isUserTrafficLimited = () => {
+    const usedTrafficInGb = (usedTraffic / (1024 ** 3)).toFixed(0);
+    const trafficForAvailablity = dataLimit;
+  
+    if (usedTrafficInGb >= trafficForAvailablity) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <div className="telegram-card bg-telegram-card/30 border-huriky-glow mb-6">
       {isActive ? (
@@ -64,11 +79,23 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
               </div>
             </div>
           </div>
-          <div className="bg-red-500/10 rounded-lg p-3 flex items-center justify-center gap-2 mb-3 mt-1">
-            <Info className="w-5 h-5 text-red-400" />
-            <p className="text-sm text-white mt-[2px]">Статус: <span className="font-bold text-red-400 pl-1">Нет активной подписки</span></p>
-          </div>
-          <p className="text-xs text-center text-white/50">Активируйте тариф для получения конфига и<br/>способов подключения</p>
+          {usedTraffic && isUserTrafficLimited() === true ? (
+            <>
+              <div className="bg-orange-600/10 rounded-lg p-3 flex items-center justify-center gap-2 mb-3 mt-1">
+                <Info className="w-5 h-5 text-orange-400" />
+                <p className="text-sm text-white mt-[2px]">Статус: <span className="font-bold text-orange-400 pl-1">Использован весь трафик</span></p>
+              </div>
+              <p className="text-xs text-center text-white/50">Вы можете купить дополительный трафик сейчас<br/>или дождитесь его ежемесячного сброса</p>
+            </>
+          ) : (
+            <>
+              <div className="bg-red-500/10 rounded-lg p-3 flex items-center justify-center gap-2 mb-3 mt-1">
+                <Info className="w-5 h-5 text-red-400" />
+                <p className="text-sm text-white mt-[2px]">Статус: <span className="font-bold text-red-400 pl-1">Нет активной подписки</span></p>
+              </div>
+              <p className="text-xs text-center text-white/50">Активируйте тариф для получения конфига и<br/>способов подключения</p>
+            </>
+          )}
         </>
       )}
     </div>

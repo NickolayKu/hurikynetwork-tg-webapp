@@ -41,7 +41,8 @@ const Index = () => {
   useEffect(() => {
     if (tg.initDataUnsafe) {
       const userId = tg.initDataUnsafe?.user?.id;
-      const userUsername = tg.initDataUnsafe?.user?.username;
+      //const userUsername = tg.initDataUnsafe?.user?.username;
+      const userUsername = 'ni_cko_lay';
 
       if (!userUsername) {
         if (userId) setUserTelegramUsername(userId);
@@ -131,6 +132,7 @@ const Index = () => {
           <AccountInfo 
             username={userTelegramUsername} 
             expiryDate={currentUserData ? formatTimestampToDate(currentUserData?.expire) : null} 
+            usedTraffic={userTrafficUsage} dataLimit={currentUserData?.data_limit}
             isActive={currentUserData?.status === "active"} 
           />
           

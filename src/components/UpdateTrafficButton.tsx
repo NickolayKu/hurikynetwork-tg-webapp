@@ -13,7 +13,7 @@ const UpdateTrafficButton: React.FC<UpdateTrafficButtonProps> = ({ handleBuyRese
         className="w-full bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none"
         onClick={() => handleBuyResetTraffic()}
       >
-        Дополнительный трафик — 50 <span className="tgico row-icon-stars-color text-black relative -mt-[2px] -ml-1"></span>
+        Дополнительный трафик — 25 <span className="tgico row-icon-stars-color text-black relative -mt-[2px] -ml-1"></span>
       </Button>
     </div>
   );
