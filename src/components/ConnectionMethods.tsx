@@ -33,12 +33,12 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       icon: 'Smartphone',
       apps: [
         {
-          title: 'Streisand',
-          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
+          title: 'V2Box',
+          link: 'https://apps.apple.com/ru/app/v2box-v2ray-client/id6446814690',
         },
         {
-          title: 'Shadowrocket',
-          link: 'https://apps.apple.com/ru/app/shadowrocket/id932747118',
+          title: 'Streisand',
+          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
         },
         {
           title: 'Npv Tunnel',
@@ -57,8 +57,8 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
           link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang&hl=ru',
         },
         {
-          title: 'v2RayTun',
-          link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=ru',
+          title: 'V2Box',
+          link: 'https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box&hl=ru',
         },
         {
           title: 'HiddifyNG',
