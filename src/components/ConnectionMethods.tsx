@@ -33,16 +33,12 @@ const ConnectionMethods: React.FC<ConnectionMethodsProps> = ({ links }) => {
       icon: 'Smartphone',
       apps: [
         {
-          title: 'V2Box',
-          link: 'https://apps.apple.com/ru/app/v2box-v2ray-client/id6446814690',
+          title: 'Hiddify',
+          link: 'https://apps.apple.com/ru/app/hiddify-proxy-vpn/id6596777532',
         },
         {
-          title: 'Streisand',
-          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
-        },
-        {
-          title: 'Npv Tunnel',
-          link: 'https://apps.apple.com/ru/app/npv-tunnel/id1629465476',
+          title: 'Anywhere',
+          link: 'https://apps.apple.com/ru/app/anywhere-vless-proxy/id6758235178?l=ru',
         },
       ],
       description: 'Устройства iPhone и iPad'
