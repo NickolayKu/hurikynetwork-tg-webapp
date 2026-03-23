@@ -14,6 +14,22 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
 
   const methods = [
     {
+      id: 'ios',
+      name: 'iOS',
+      icon: 'Smartphone',
+      apps: [
+        {
+          title: 'Hiddify',
+          link: 'https://apps.apple.com/ru/app/hiddify-proxy-vpn/id6596777532',
+        },
+        {
+          title: 'Anywhere',
+          link: 'https://apps.apple.com/ru/app/anywhere-vless-proxy/id6758235178?l=ru',
+        },
+      ],
+      description: 'Устройства iPhone и iPad'
+    },
+    {
       id: 'android',
       name: 'Android',
       icon: 'Smartphone',
@@ -23,35 +39,15 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
           link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang&hl=ru',
         },
         {
-          title: 'v2RayTun',
-          link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=ru',
+          title: 'V2Box',
+          link: 'https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box&hl=ru',
         },
         {
           title: 'HiddifyNG',
           link: 'https://play.google.com/store/apps/details?id=ang.hiddify.com&hl=ru',
         },
       ],
-      description: 'v2rayNG, v2RayTun, HiddifyNG'
-    },
-    {
-      id: 'ios',
-      name: 'iOS',
-      icon: 'Smartphone',
-      apps: [
-        {
-          title: 'Streisand',
-          link: 'https://apps.apple.com/ru/app/streisand/id6450534064',
-        },
-        {
-          title: 'Shadowrocket',
-          link: 'https://apps.apple.com/ru/app/shadowrocket/id932747118',
-        },
-        {
-          title: 'Npv Tunnel',
-          link: 'https://apps.apple.com/ru/app/npv-tunnel/id1629465476',
-        },
-      ],
-      description: 'Streisand, Shadowrocket, Npv Tunnel'
+      description: 'Смартфоны, планшеты и телевизоры'
     },
     {
       id: 'windows',
@@ -71,7 +67,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
           link: 'https://github.com/Qv2ray/Qv2ray/releases',
         },
       ],
-      description: 'V2rayN, Nekoray, QV2ray'
+      description: 'Ноутбуки и компьютеры'
     },
     {
       id: 'macos',
@@ -91,7 +87,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
           link: 'https://github.com/clashdownload/ClashX_Pro/releases',
         },
       ],
-      description: 'Streisand, V2rayU, ClashX Pro'
+      description: 'Ноутбуки и компьютеры'
     },
     {
       id: 'linux',
@@ -111,7 +107,7 @@ const InstallAppScreen: React.FC<ScreenProps> = ({handleClickNextScreen, selecte
           link: 'https://github.com/fossabot/clash',
         },
       ],
-      description: 'Nekoray, Qv2ray, Clash'
+      description: 'Ноутбуки, роутеры и компьютеры'
     }
   ];
 
