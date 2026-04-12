@@ -7,7 +7,7 @@ import ConnectionMethods from '@/components/ConnectionMethods';
 import { Subscription } from '@/types';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import SupportButton from '@/components/SupportButton';
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { api } from '@/services/api';
 import { useEffect, useState } from "react";
 import PremiumBotButton from '@/components/PremiumBotButton';

@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Award, UploadCloud, Wifi } from 'lucide-react';
 
 interface SubscriptionCardProps {
   isSelected?: boolean;
