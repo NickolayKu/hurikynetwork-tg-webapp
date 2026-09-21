@@ -24,9 +24,10 @@ const TrialButton: React.FC<TrialButtonProps> = ({ onClick, isOpened, handleClos
         <div className="space-y-5">
           <button
             className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none"
-            onClick={handleClickTrialButton}
+            disabled
           >
-            <span className="pt-[2px]">Активировать пробный период</span>
+            {/* <span className="pt-[2px]">Активировать пробный период</span> */}
+            Временно недоступно
           </button>
         </div>
       </SheetContent>

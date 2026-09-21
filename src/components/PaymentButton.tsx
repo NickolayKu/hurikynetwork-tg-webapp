@@ -42,12 +42,13 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ price, label, onClick, is
         <div className="space-y-5">
             <button
               className="telegram-button bg-huriky-yellow hover:bg-amber-500 text-black flex items-center justify-center outline-none shadow-none"
-              onClick={handleClickPayment}
+              disabled
             >
-              <span className="pt-[2px]">{`${label} - ${getStarsText(
+              {/* <span className="pt-[2px]">{`${label} - ${getStarsText(
                 price
               )}`}
-              </span>
+              </span> */}
+              Временно недоступно
             </button>
 
             {/* <Input
