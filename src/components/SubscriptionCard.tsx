@@ -42,7 +42,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
 
   return (
     <div className={`telegram-card ${isBigHeight && 'big-height-tarif-card'} relative ${isDesktop ? 'py-3' : 'py-5'} mb-4 hover:bg-telegram-card/80 w-full transition-all cursor-pointer 
-      border-2 hover:border-huriky-yellow ${type === 'trial' && 'border-huriky-yellow/30'}`} onClick={onClick}>
+      border-2 hover:border-huriky-yellow ${type === 'trial' && 'border-huriky-yellow/30'}`}>
       {isPopular && (
         <div className="absolute top-0 left-0 bg-huriky-yellow text-black text-[11px] py-0 font-bold pt-[2px] px-3 rounded-br-lg rounded-tl-md flex items-center gap-1">
           ХИТ
